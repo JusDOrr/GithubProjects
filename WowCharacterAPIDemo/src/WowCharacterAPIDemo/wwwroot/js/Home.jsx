@@ -52,3 +52,5 @@ ReactDOM.render(
   <RealmControl />,
   document.getElementById('content')
 );
+
+//http://media.blizzard.com/wow/icons/{size}/{icon_name}.jpg Icon hosting location
