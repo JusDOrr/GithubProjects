@@ -26,7 +26,7 @@
 var RealmStatusControl = React.createClass({
     render: function () {
         var realms = this.props.data.map(function (realm) {
-            return (<Realm key={realm.slug} data={realm}/>);
+            return (<div key={realm.slug} ><Realm data={realm}/><br/></div>);
         });
 
         return (<div>{realms}</div>);
@@ -40,8 +40,8 @@ var Realm = React.createClass({
                     <div>{realm.battlegroup}</div>
                     <div>{realm.name}</div>
                     <div>{realm.population}</div>
-                    <div>{realm.queue}</div>
-                    <div>{realm.status}</div>
+                    <div>{realm.queue.toString()}</div>
+                    <div>{realm.status.toString()}</div>
                     <div>{realm.timezone}</div>
                     <div>{realm.type}</div>
                 </div>);
