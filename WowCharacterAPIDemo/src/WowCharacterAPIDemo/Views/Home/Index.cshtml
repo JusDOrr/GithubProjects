@@ -3,22 +3,31 @@
 }
 <html>
 <head>
-    <title>Hello React</title>
+    <title>Blizzard WoW API with React</title>
 </head>
 <body>
-    <div id="content"></div>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <div id="app"></div>
+
+    @*CSS*@
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/home.css" />
+
+    @*JS*@
+    <script type="text/javascript" src="/js/Global.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-with-addons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.8/react-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-bootstrap/0.23.1/ReactRouterBootstrap.min.js"></script>
+    <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
 
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>*@
-    <script src="@Url.Content("~/js/Home.jsx")"></script>
+    @*JSX*@
+    <script src="@Url.Content("~/js/ReactControls/Controls/Realms.jsx")"></script>
+    <script src="@Url.Content("~/js/ReactControls/Controls/Mounts.jsx")"></script>
+
+    <script src="@Url.Content("~/js/ReactControls/NavBar.jsx")"></script>
+    <script src="@Url.Content("~/js/ReactControls/App.jsx")"></script>
 </body>
 </html>
