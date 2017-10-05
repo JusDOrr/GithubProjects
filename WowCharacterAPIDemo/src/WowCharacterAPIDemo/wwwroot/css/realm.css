@@ -1,0 +1,80 @@
+﻿/* NavBar */
+.navbar {
+    margin: 0;
+}
+
+/* Realm Well & Header */
+.realmWell {
+    /*background: #2C4770;*/
+    font-family: 'Hammersmith One', sans-serif;
+    margin: 0px;
+}
+
+.realmHeader {
+    text-align: center;
+    /*background: #2C4770;*/
+    border: none;
+    /*color: #132a4a;*/
+    margin: 0;
+}
+
+.realmHeader h1 {
+    font-size: 54px;
+}
+
+.realmDescription {
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 16px;
+    max-width: 370px;
+    text-align: center;
+    /*color: #758AA8;*/
+}
+
+/* Realm Table */
+.realmTable th, .realmTable td {
+    text-align: center;
+}
+
+.realmTable tr:nth-of-type(even) {
+    background: #ececec;
+    /*background: #142F54;
+    color: #758AA8;*/
+}
+.realmTable tr:nth-of-type(odd) {
+    background: #ececec;
+    /*color: #758AA8;*/
+}
+
+/* Status Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 100;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: lightgray;
+    color: dimgrey;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-family:initial;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip-top {
+    bottom: 125%;
+    left: 50%;
+    margin-left: -35px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

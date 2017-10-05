@@ -1,0 +1,94 @@
+﻿/* GLOBAL CSS */
+
+.navbar {
+    margin: 0;
+}
+
+.pageWell {
+    /*background: #2C4770;*/
+    font-family: 'Hammersmith One', sans-serif;
+    margin: 0px;
+}
+
+.pageHeader {
+    text-align: center;
+    /*background: #2C4770;*/
+    border: none;
+    /*color: #132a4a;*/
+    margin: 0;
+}
+
+.pageHeader h1 {
+    font-size: 54px;
+}
+
+.pageDescription {
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 16px;
+    max-width: 370px;
+    text-align: center;
+    /*color: #758AA8;*/
+}
+
+.pageTable th, .pageTable td {
+    text-align: center;
+}
+
+.pageTable tr:nth-of-type(even) {
+    background: #ececec;
+    /*background: #142F54;
+    color: #758AA8;*/
+}
+.pageTable tr:nth-of-type(odd) {
+    background: #ececec;
+    /*color: #758AA8;*/
+}
+
+/* Status Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 100;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: lightgray;
+    color: dimgrey;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-family:initial;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip-top {
+    bottom: 125%;
+    left: 50%;
+    margin-left: -35px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* REALM CSS */
+
+/* MOUNTS CSS */
+
+.mountRowCell tr td {
+    vertical-align: middle;
+}
+
+/*.mountRowIcon {
+    display: inline-block;
+    border: solid;
+    padding: 0;
+    width: 55px;
+}*/

@@ -9,15 +9,18 @@
             Nav = ReactBootstrap.Nav;
 
         return (
-                <Navbar className="navbar">
+                <Navbar className="navbar" inverse>
                     <Navbar.Header>
                       <Navbar.Brand>
                         <ReactRouter.Link to="/">Realm Status</ReactRouter.Link>
                       </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
+                      <LinkContainer to="/characters">
+                        <NavItem eventKey={1}>Character</NavItem>
+                      </LinkContainer>
                       <LinkContainer to="/mounts">
-                        <NavItem eventKey={1}>Mounts</NavItem>
+                        <NavItem eventKey={2}>Mounts</NavItem>
                       </LinkContainer>
                     </Nav>
                 </Navbar>

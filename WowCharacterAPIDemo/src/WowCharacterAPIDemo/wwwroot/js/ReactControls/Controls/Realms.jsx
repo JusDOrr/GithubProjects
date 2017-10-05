@@ -1,4 +1,4 @@
-﻿var RealmControl = React.createClass({
+﻿var RealmStatusControl = React.createClass({
     getInitialState: function () {
         return { data: [] };
     },
@@ -20,22 +20,27 @@
         var Well = ReactBootstrap.Well,
             PageHeader = ReactBootstrap.PageHeader;
 
-        var HeaderElement = React.createElement(PageHeader, { style: { textAlign: "center", margin: "0" } }, "Realm Status");
+        var HeaderElement = React.createElement(PageHeader, { className: "pageHeader" }, "Realm Status");
+        var DescElement = React.createElement("p", { className: "pageDescription"},
+                                "This page consumes Blizzard's WOW Realm API. " +
+                                "It displays general information about each realm."
+                            );
 
         return (
           <div>
-            <Well>
+            <Well className="pageWell">
                 {HeaderElement}
-                <RealmStatusControl data={this.state.data} />
+                {DescElement}
+                <RealmTable data={this.state.data} />
             </Well>
           </div>
       );
     }
 });
 
-var RealmStatusControl = React.createClass({
+var RealmTable = React.createClass({
     getHeader: function () {
-        var header = React.createElement("tr", { style: { background: "#BBB"} },
+        var header = React.createElement("tr", { style: { background: "#d6d6d6" } },
                         React.createElement("th", null, "Status"),
                         React.createElement("th", null, "Name"),
                         React.createElement("th", null, "Type"),
@@ -52,11 +57,11 @@ var RealmStatusControl = React.createClass({
 
         var Header = this.getHeader();
         var Realms = this.props.data.map(function (realm) {
-            return (<Realm key={realm.slug} data={realm}></Realm>);
+            return (<RealmRow key={realm.slug} data={realm}></RealmRow>);
         });
 
         return (
-        <Table className="centerTable" striped>
+        <Table className="pageTable" striped>
             <thead>{Header}</thead>
             <tbody>{Realms}</tbody>
         </Table>
@@ -64,7 +69,7 @@ var RealmStatusControl = React.createClass({
     }
 });
 
-var Realm = React.createClass({
+var RealmRow = React.createClass({
     getStatus: function (status, queue) {
         var Glyphicon = ReactBootstrap.Glyphicon;
         var queue = this.getQueue(queue);
@@ -167,3 +172,4 @@ var Realm = React.createClass({
 });
 
 //http://media.blizzard.com/wow/icons/{size}/{icon_name}.jpg Icon hosting location
+//http://media.blizzard.com/wow/icons/36/inv_ability_mount_cockatricemount_white.jpg
