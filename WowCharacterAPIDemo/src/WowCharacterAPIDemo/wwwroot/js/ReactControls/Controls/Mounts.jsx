@@ -1,4 +1,6 @@
-﻿var MountControl = React.createClass({
+﻿// TODO: NEEDS TONS OF WORK
+
+var MountControl = React.createClass({
     getInitialState: function () {
         return { data: [] };
     },
@@ -54,51 +56,16 @@ var TempMountControl = React.createClass({
 
         return header;
     },
-    getQuality: function (quality) {
-        var element = "grey";
-
-        if (quality == 1)
-            element = "white";
-        else if (quality == 2)
-            element = "green";
-        else if (quality == 3)
-            element = "blue";
-        else if (quality == 4)
-            element = "purple";
-        else if (quality == 5)
-            element = "orange";
-        else if (quality == 6)
-            element = "yellow";
-        else if (quality == 7)
-            element = "cyan";
-
-        return element;
-    },
     render: function () {
         var Table = ReactBootstrap.Table;
 
         var Header = this.getHeader();
         var Mounts = this.props.data.map(function (mount) {
-            var icon = "http://media.blizzard.com/wow/icons/36/" + mount.icon + ".jpg"
-
-            var element = "grey";
-            if (mount.qualityId == 1)
-                element = "white";
-            else if (mount.qualityId == 2)
-                element = "green";
-            else if (mount.qualityId == 3)
-                element = "blue";
-            else if (mount.qualityId == 4)
-                element = "purple";
-            else if (mount.qualityId == 5)
-                element = "orange";
-            else if (mount.qualityId == 6)
-                element = "yellow";
-            else if (mount.qualityId == 7)
-                element = "cyan";
+            var icon = getIcon(mount.icon);
+            var color = getQualityColor(mount.qualityId);
 
             return (<tr key={mount.creatureId}>
-                        <td style={{ display: "inline-block", width: "55px", padding: "0", border: "solid", borderColor: element }}>
+                        <td style={{ display: "inline-block", width: "55px", padding: "0", border: "solid", borderColor: color }}>
                             <img src={icon} style={{ width: "100%"}}/>
                         </td>
                         <td>{mount.name}</td>

@@ -2,7 +2,7 @@
     getFooter: function () {
         var Well = ReactBootstrap.Well;
         var footer = React.createElement(Well, { style: { margin: 0, backgroundColor: "#222", borderColor: "#080808" } },
-                        React.createElement("div", { style: { color: "#9d9d9d" } }, "Copyright (c) 2017 Justin Orr")
+                        React.createElement("div", { style: { color: "#9d9d9d" } }, "Website: Copyright (c) 2017 Justin Orr -||- Artwork: All property of Blizzard")
                      );
 
         return footer;

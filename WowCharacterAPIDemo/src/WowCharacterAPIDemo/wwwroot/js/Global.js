@@ -4,7 +4,6 @@
     Characters: "Characters"
 });
 
-// Remove on Checkin
 var getAPIKey = function () { return "83pjrytmmwp4zv96jbe4ht8j6xtbdfw2"; };
 
 var getAPIPath = function (apitype) {
@@ -17,8 +16,9 @@ var getAPIPath = function (apitype) {
         case APIType.Mounts:
             apiPath = "https://us.api.battle.net/wow/mount/?locale=en_US&apikey=";
             break;
-        case APIType.Characters:
-            apiPath = "https://us.api.battle.net/wow/character/medivh/Aevrius?fields=talents,stats&locale=en_US&apikey=";
+       case APIType.Characters:
+            // Need to remove realm and character name from hardcoded url
+            apiPath = "https://us.api.battle.net/wow/character/medivh/Aevrius?fields=talents,stats,items&locale=en_US&apikey=";
             break;
     }
 
@@ -26,6 +26,43 @@ var getAPIPath = function (apitype) {
         apiPath += getAPIKey();
 
     return apiPath;
+};
+
+var getLogo = function (faction) {
+   var logo = "";
+
+   if (!faction)
+      return logo;
+
+   if (faction === "Alliance")
+      logo = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-alliance.png";
+   else
+      logo = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-horde.png";
+
+   return logo;
+};
+
+var getAvatar = function (race, gender, thumbnail) {
+   if (race === undefined || gender === undefined || thumbnail === undefined)
+      return "";
+
+   // avatar - character icon / profilemain - character render
+   var _fallback = "?alt=/wow/static/images/2d/profilemain/race/" + race + "-" + gender + ".jpg";
+   var _thumbnail = (thumbnail + "").replace("avatar.jpg", "profilemain.jpg");
+
+   return "http://render-api-us.worldofwarcraft.com/static-render/us/" + _thumbnail + _fallback;
+};
+
+var getIcon = function (icon) {
+   if (!icon)
+      return "";
+
+   return "http://media.blizzard.com/wow/icons/36/" + icon + ".jpg";
+};
+
+// Downloaded for easier use... This is no longer used...
+var getEmptyGearSlots = function () {
+   return "https://worldofwarcraft.akamaized.net/static/components/GameIcon/GameIcon-slots.png";
 };
 
 var getRaceInfo = function (race) {
@@ -71,4 +108,50 @@ var getClassInfo = function (value) {
     }
 
     return info;
+};
+
+var getClassStats = function (classId, stats) {
+   var classStats = "";
+
+   // TODO: update this work for all classes. just return warrior stats for now
+   switch (classId) {
+      case 1: classStats = _.pick(stats, ["health", "powerType", "power", "str", "sta", "crit", "critRating", "haste", "hasteRating", "mastery", "masteryRating", "versatility", "versatilityDamageDoneBonus"]);
+         break;
+      default: classStats = stats;
+         break;
+   }
+
+   return classStats;
+};
+
+var getQualityColor = function (quality) {
+   var element = "grey";
+
+   if (quality === 1)
+      element = "white";
+   else if (quality === 2)
+      element = "green";
+   else if (quality === 3)
+      element = "blue";
+   else if (quality === 4)
+      element = "purple";
+   else if (quality === 5)
+      element = "orange";
+   else if (quality === 6)
+      element = "yellow";
+   else if (quality === 7)
+      element = "cyan";
+
+   return element;
+};
+
+var getFactionColor = function (faction) {
+   var element = "darkgrey";
+
+   if (faction === "Alliance")
+      element = "darkblue";
+   else if (faction === "Horde")
+      element = "darkred";
+
+   return element;
 };
