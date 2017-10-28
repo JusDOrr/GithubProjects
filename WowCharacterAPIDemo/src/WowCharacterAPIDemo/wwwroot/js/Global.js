@@ -18,7 +18,7 @@ var getAPIPath = function (apitype) {
             break;
        case APIType.Characters:
             // Need to remove realm and character name from hardcoded url
-            apiPath = "https://us.api.battle.net/wow/character/medivh/Aevrius?fields=talents,stats,items&locale=en_US&apikey=";
+            apiPath = "https://us.api.battle.net/wow/character/medivh/Aevrius?fields=talents,stats,items,guild,titles&locale=en_US&apikey=";
             break;
     }
 
@@ -125,22 +125,22 @@ var getClassStats = function (classId, stats) {
 };
 
 var getQualityColor = function (quality) {
-   var element = "grey";
+   var element = "#9d9d9d";
 
    if (quality === 1)
-      element = "white";
+      element = "#fff";
    else if (quality === 2)
-      element = "green";
+      element = "#1eff00";
    else if (quality === 3)
-      element = "blue";
+      element = "#0081ff";
    else if (quality === 4)
-      element = "purple";
+      element = "#c600ff";
    else if (quality === 5)
-      element = "orange";
+      element = "#ff8000";
    else if (quality === 6)
-      element = "yellow";
+      element = "#e5cc80";
    else if (quality === 7)
-      element = "cyan";
+      element = "#0cf";
 
    return element;
 };
@@ -149,9 +149,9 @@ var getFactionColor = function (faction) {
    var element = "darkgrey";
 
    if (faction === "Alliance")
-      element = "darkblue";
+      element = "#000050";
    else if (faction === "Horde")
-      element = "darkred";
+      element = "#500000";
 
    return element;
 };

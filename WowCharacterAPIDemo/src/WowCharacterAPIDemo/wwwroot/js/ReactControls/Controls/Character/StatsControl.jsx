@@ -16,7 +16,7 @@
 
         // TODO: AM I ALLOWED TO USE THIS? /static/components/Icon/Icon.svg#haste
         return (
-                <Well style={{ width: "740px", margin: "auto", height: "200px"}}>
+                <Well style={{ width: "740px", margin: "auto", height: "200px" }}>
                     <Table>
                         <tbody>
                             <tr>

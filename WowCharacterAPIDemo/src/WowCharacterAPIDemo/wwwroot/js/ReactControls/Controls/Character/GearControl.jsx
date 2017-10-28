@@ -37,7 +37,7 @@ var Gear = React.createClass({
             };
         }
 
-        return (<div style={{marginTop: "120px"}}>
+        return (<div style={{marginTop: "20px"}}>
                     <div>
                         <ItemsLeftSide data={leftSide} />
                         <ItemsRightSide data={rightSide} />
@@ -103,7 +103,7 @@ var ItemLeftSideCell = React.createClass({
     render: function () {
         var info = React.createElement(ItemIconLeftCell, { data: this.props.data, emptyIcon: this.props.emptyIcon }, null);
 
-        return (<div style={{height: "40px", marginBottom: "5px"}}>{info}</div>);
+        return (<div style={{height: "40px", marginBottom: "20px"}}>{info}</div>);
     }
 });
 
@@ -111,7 +111,7 @@ var ItemRightSideCell = React.createClass({
     render: function () {
         var info = React.createElement(ItemIconRightCell, { data: this.props.data, emptyIcon: this.props.emptyIcon }, null);
 
-        return (<div style={{ height: "40px", marginBottom: "5px" } }>{info}</div>);
+        return (<div style={{ height: "40px", marginBottom: "20px" } }>{info}</div>);
     }
 });
 
@@ -119,7 +119,7 @@ var ItemIconRightCell = React.createClass({
     render: function () {
         var item = this.props.data;
 
-        var color = "white";
+        var color = "grey";
         var icon = "/images/Slots/" + this.props.emptyIcon + ".png";
         var opacity = 0;
 
@@ -136,7 +136,7 @@ var ItemIconRightCell = React.createClass({
 
         return (
                 <div>
-                    <img src={icon} style={{ float: "right", border: "solid", borderColor: color, width: "42px", height: "42px", backgroundSize: "contains"}} />
+                    <img src={icon} style={{ float: "right", border: "solid", borderWidth: "thin", borderColor: color, width: "42px", height: "42px", backgroundSize: "contains"}} />
                     <div style={{ float: "right", marginRight: "5px", verticalAlign: "middle", fontSize: "small" } }>
                         <div style={{ color: color } }>{name}</div>
                         <div style={{ color: "white", float: "right" } }>{lvl}</div>
@@ -167,7 +167,7 @@ var ItemIconLeftCell = React.createClass({
 
         return (
                 <div>
-                    <img src={icon} style={{ float: "left", border: "solid", borderColor: color, width: "42px", height: "42px", backgroundSize: "contains"}} />
+                    <img src={icon} style={{ float: "left", border: "solid", borderWidth: "thin", borderColor: color, width: "42px", height: "42px", backgroundSize: "contains" }} />
                     <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" } }>
                         <div style={{ color: color } }>{name}</div>
                         <div style={{ color: "white" } }>{lvl}</div>
