@@ -1,40 +1,89 @@
 ﻿var CharacterControl = React.createClass({
     getInitialState: function () {
-        return { data: [] };
+        return {
+            data: null
+        };
     },
     componentDidMount: function () {
-        this.loadCharacterFromServer();
+        this.loadCharacterFromServer(null, null);
     },
-    loadCharacterFromServer: function () {
-        var apiPath = getAPIPath(APIType.Characters);
+    loadCharacterFromServer: function (realm, character) {
+        var apiPath = getAPIPath(APIType.Characters, realm, character);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('get', apiPath, true);
-        xhr.onload = function () {
-            var data = JSON.parse(xhr.responseText);
-            this.setState({ data: data });
-        }.bind(this);
-        xhr.send();
+        if (apiPath != "") {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', apiPath, true);
+            xhr.onload = function () {
+                var data = JSON.parse(xhr.responseText);
+                this.setState({ data: data });
+            }.bind(this);
+            xhr.onerror = function (e) {
+                // Nothing with this yet...
+            }.bind(this);
+            xhr.send();
+        }
+    },
+    onSearchClick: function () {
+        var realm = document.getElementById('formControlsRealm').value;
+        var char = document.getElementById('formControlsChar').value;
+
+        this.loadCharacterFromServer(realm, char);
     },
     render: function () {
-        var Well = ReactBootstrap.Well,
-            PageHeader = ReactBootstrap.PageHeader;
+        var Well = ReactBootstrap.Well, PageHeader = ReactBootstrap.PageHeader,
+            Form = ReactBootstrap.Form, FormGroup = ReactBootstrap.FormGroup,
+            FormControl = ReactBootstrap.FormControl, ControlLabel = ReactBootstrap.ControlLabel,
+            Button = ReactBootstrap.Button;
 
-        var HeaderElement = React.createElement(PageHeader, { className: "pageHeader" }, "Characters");
+        var HeaderElement = React.createElement(PageHeader, { className: "pageHeader" }, "Character");
         var DescElement = React.createElement("p", { className: "pageDescription" },
                                 "This page consumes Blizzard's WOW Character API. " +
-                                "It displays general information about each character."
-                            );
+                                "It displays data about a character.");
+
+        var BodyElement = "";
+        if (this.state.data) {
+            if (this.state.data.reason != undefined)
+                BodyElement = React.createElement(ErrorLayout, { data: this.state.data.reason }, null);
+            else
+                BodyElement = React.createElement(CharacterLayout, { data: this.state.data }, null);
+        }
 
         return (
           <div>
             <Well className="pageWell">
                 {HeaderElement}
                 {DescElement}
-                <CharacterLayout data={this.state.data} />
+                <Form inline style={{ margin: "auto", width: "fit-content" }}>
+                    <FormGroup controlId="formControlsRealm">
+                        <ControlLabel>Realm:</ControlLabel>
+                        <FormControl label="Realm" placeholder="Enter Realm Name..." style={{ marginLeft: "5px" }}/>
+                    </FormGroup>
+                    <FormGroup controlId="formControlsChar" style={{ marginLeft: "5px" }}>
+                        <ControlLabel>Character:</ControlLabel>
+                        <FormControl label="Character" placeholder="Enter Character Name..." style={{ marginLeft: "5px" }} />
+                    </FormGroup>
+                    <Button type="button" onClick={this.onSearchClick} style={{ marginLeft: "5px" }}>
+                        Search
+                    </Button>
+                </Form>
+                {BodyElement}
             </Well>
           </div>
       );
+    }
+});
+
+var ErrorLayout = React.createClass({    
+    render: function () {
+        var Well = ReactBootstrap.Well;
+
+        return (
+                <div style={{marginTop: "5px"}}>
+                    <Well style={{ width: "740px" , margin: "auto", textAlign: "center" }}>
+                        {this.props.data}
+                    </Well>
+                </div>
+                );
     }
 });
 
@@ -53,7 +102,7 @@ var CharacterLayout = React.createClass({
         var backgroundColor = getFactionColor(raceInfo.faction);
 
         return (
-                <div>
+                <div style={{marginTop: "5px"}}>
                     <Well style={{ width: "740px", margin: "auto", background: backgroundColor }}>
                         <NamePlate data={char} />
                     </Well>

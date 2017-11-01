@@ -4,26 +4,24 @@
     Characters: "Characters"
 });
 
-var getAPIKey = function () { return "83pjrytmmwp4zv96jbe4ht8j6xtbdfw2"; };
+var addAPIKeyField = function () { return "&apikey=83pjrytmmwp4zv96jbe4ht8j6xtbdfw2"; };
 
-var getAPIPath = function (apitype) {
+var getAPIPath = function (apitype, realm, character) {
     var apiPath = "";
+    var locale = "en_US";
 
     switch (apitype) {
-        case APIType.RealmStatus:
-            apiPath = "https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=";
-            break;
-        case APIType.Mounts:
-            apiPath = "https://us.api.battle.net/wow/mount/?locale=en_US&apikey=";
-            break;
+       case APIType.RealmStatus:
+          apiPath = "https://us.api.battle.net/wow/realm/status?locale=" + locale + addAPIKeyField();
+          break;
+       case APIType.Mounts:
+          apiPath = "https://us.api.battle.net/wow/mount/?locale=" + locale + addAPIKeyField();
+          break;
        case APIType.Characters:
-            // Need to remove realm and character name from hardcoded url
-            apiPath = "https://us.api.battle.net/wow/character/medivh/Aevrius?fields=talents,stats,items,guild,titles&locale=en_US&apikey=";
-            break;
+          if(realm && character)
+            apiPath = "https://us.api.battle.net/wow/character/" + realm + "/" + character + "?fields=talents,stats,items,guild,titles&locale=" + locale + addAPIKeyField();
+          break;
     }
-
-    if (apiPath.length > 0)
-        apiPath += getAPIKey();
 
     return apiPath;
 };
