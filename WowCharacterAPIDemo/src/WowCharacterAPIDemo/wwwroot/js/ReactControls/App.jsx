@@ -24,8 +24,8 @@ ReactDOM.render(
   <ReactRouter.Router history={ReactRouter.hashHistory}>
     <ReactRouter.Route path="/" component={App}>
       <ReactRouter.IndexRoute component={RealmStatusControl} />
+      <ReactRouter.Route path="armory" component={CharacterControl} />
       <ReactRouter.Route path="mounts" component={MountControl} />
-      <ReactRouter.Route path="characters" component={CharacterControl} />
     </ReactRouter.Route>
   </ReactRouter.Router>,
   document.getElementById('app')

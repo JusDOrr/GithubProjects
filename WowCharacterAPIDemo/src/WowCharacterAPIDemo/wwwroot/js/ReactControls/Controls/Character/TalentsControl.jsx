@@ -8,26 +8,28 @@
     render: function () {
         var PanelGroup = ReactBootstrap.PanelGroup;
         var Panel = ReactBootstrap.Panel;
+        var Well = ReactBootstrap.Well;
         var talentsData = this.props.data;
 
-        // TODO: FIX THE ISSUE WITH MISSING KEY VALUES
         var talents = "";
         if (talentsData) {
             var eventKey = 1;
             talents = talentsData.map(function (talent) {
                 if (talent.spec) {
                     var icon = getIcon(talent.spec.icon);
-                    var header = React.createElement('div', { style: { height: "25px" } },
+                    var header = React.createElement('div', { style: { height: "fit-content" } },
                                     React.createElement('div', { style: { width: "150px" } },
                                         React.createElement('img', {src: icon, style:{ height: "25px"}}, null),
                                         React.createElement('label', { style: { marginLeft: "5px" } }, talent.spec.name)));
 
-                    var spells = talent.talents.map(function (spell) {
-                        return React.createElement(TalentSpell, { }, spell.spell);
+                    // Sorting by the tier value first, then mapping spells
+                    var spells = talent.talents.sort(function (a, b) { return (a.tier > b.tier) ? 1 : ((b.tier > a.tier) ? -1 : 0); }).map(function (spell) {
+                        return React.createElement(TalentSpell, { key:"talentSpell-" + spell.spell.name }, spell.spell, spell.tier);
                     });
 
                     return (<Panel key={"ctcPanel-" + talent.spec.name} header={header} eventKey={eventKey++}>
-                                <div>                                    
+                                <Well style={{ width: "700px", height: "fit-content" }}>{talent.spec.description}</Well>
+                                <div>
                                     {spells}
                                 </div>
                             </Panel>);
@@ -46,18 +48,29 @@
 });
 
 var TalentSpell = React.createClass({
+    getLevel: function(tier){
+        var level = 15 * (tier + 1);
+
+        if (level > 90) {
+            level = 100;
+        }
+
+        return level;
+    },
     render: function () {
-        var spell = this.props.children;
+        var spell = this.props.children[0];
+        var tier = this.props.children[1];
+
         var icon = getIcon(spell.icon);
+        var lvl = this.getLevel(tier);
+        //var desc = spell.description
 
         return (
                 <div style={{height: "40px"}}>
-                    <img src={icon} style={{float: "left"}} />
+                    <div style={{float: "left", height: "36px", width: "15px"}}>{lvl}</div>
+                    <img src={icon} style={{float: "left", height: "36px", width: "36px", marginLeft: "15px"}} />
                     <div style={{float: "left", marginLeft: "5px"}}>{spell.name}</div>
                 </div>
                 );
-                //<div>{spell.description}</div>
-                //<div>{spell.castTime}</div>
-                //<div>{spell.id}</div>
     }
 });

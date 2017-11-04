@@ -37,8 +37,7 @@
 
         var HeaderElement = React.createElement(PageHeader, { className: "pageHeader" }, "Character");
         var DescElement = React.createElement("p", { className: "pageDescription" },
-                                "This page consumes Blizzard's WOW Character API. " +
-                                "It displays data about a character.");
+                                "This page consumes Blizzard's WOW Character Profile APIs.");
 
         var BodyElement = "";
         if (this.state.data) {

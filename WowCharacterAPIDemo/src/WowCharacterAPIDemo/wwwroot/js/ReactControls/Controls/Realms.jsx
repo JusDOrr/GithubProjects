@@ -22,9 +22,7 @@
 
         var HeaderElement = React.createElement(PageHeader, { className: "pageHeader" }, "Realm Status");
         var DescElement = React.createElement("p", { className: "pageDescription"},
-                                "This page consumes Blizzard's WOW Realm API. " +
-                                "It displays general information about each realm."
-                            );
+                                "This page consumes Blizzard's WOW Realm API.");
 
         return (
           <div>

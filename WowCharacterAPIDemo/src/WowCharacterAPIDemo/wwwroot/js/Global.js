@@ -55,7 +55,8 @@ var getIcon = function (icon) {
    if (!icon)
       return "";
 
-   return "http://media.blizzard.com/wow/icons/36/" + icon + ".jpg";
+   return "https://render-us.worldofwarcraft.com/icons/56/" + icon + ".jpg";
+   //return "http://media.blizzard.com/wow/icons/36/" + icon + ".jpg";
 };
 
 // Downloaded for easier use... This is no longer used...
@@ -153,3 +154,22 @@ var getFactionColor = function (faction) {
 
    return element;
 };
+
+//HEALTH{color:#27cc4e}
+//STAMINA{color:#ff8b2d}
+//ENERGY{color:#cb9501}
+//FOCUS{color:#d45719}
+//FURY{color:#8400ff}
+//INSANITY{color:#60f}
+//MAELSTROM{color:#008fff}
+//MANA{color:#1c8aff}
+//PAIN{color:#d45719}
+//RAGE{color:#ab0000}
+//RUNICPOWER{color:#00bcde}
+//AGILITY{color:#ffd955}
+//INTELLECT{color:#d26cd1}
+//STRENGTH{color:#f33232}
+//CRITICALSTRIKE{color:#e01c1c}
+//HASTE{color:#0ed59b}
+//MASTERY{color:#9256ff}
+//VERSATILITY{color:#bfbfbf}

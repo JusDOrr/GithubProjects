@@ -16,14 +16,18 @@
                       </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                      <LinkContainer to="/characters">
-                        <NavItem eventKey={1}>Character</NavItem>
-                      </LinkContainer>
-                      <LinkContainer to="/mounts">
-                        <NavItem eventKey={2}>Mounts</NavItem>
+                      <LinkContainer to="/armory">
+                        <NavItem eventKey={1}>Armory</NavItem>
                       </LinkContainer>
                     </Nav>
                 </Navbar>
                 );
     }
 });
+
+// Currently, this page feels unnecessary...
+// Might reapproach when armory is complete...
+
+//<LinkContainer to="/mounts">
+//  <NavItem eventKey={2}>Mounts</NavItem>
+//</LinkContainer>

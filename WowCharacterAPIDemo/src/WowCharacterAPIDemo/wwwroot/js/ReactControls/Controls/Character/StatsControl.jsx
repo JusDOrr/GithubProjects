@@ -13,6 +13,10 @@
 
         // TODO: HARD CODED WARRIOR RIGHT NOW, MUST UPDATE
         var classStats = getClassStats(1, stats);
+        
+        //<img src="/images/Stats/Health.png" style={{ width: "55px" , display: "inline-block" }} />
+        //<svg dangerouslySetInnerHTML={{ __html: "<use xlink:href='https://worldofwarcraft.akamaized.net/static/components/Icon/Icon.svg#health'/>" }}/> 
+        //<image xlink:href="https://worldofwarcraft.akamaized.net/static/components/Icon/Icon.svg#health" width="55px" height="55px"></image>
 
         // TODO: AM I ALLOWED TO USE THIS? /static/components/Icon/Icon.svg#haste
         return (
@@ -21,7 +25,7 @@
                         <tbody>
                             <tr>
                                 <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent"}}>
-                                    <img src="/images/Stats/Health.png" style={{ width: "55px", display: "inline-block" }} />
+                                    <img src="/images/Stats/Health.png" style={{ width: "55px" , display: "inline-block" }} />                                       
                                     <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
                                         <div>{classStats.health.toLocaleString()}</div>
                                         <div>HEALTH</div>
