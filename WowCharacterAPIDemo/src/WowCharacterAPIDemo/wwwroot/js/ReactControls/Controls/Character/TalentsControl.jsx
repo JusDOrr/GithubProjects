@@ -17,10 +17,10 @@
             talents = talentsData.map(function (talent) {
                 if (talent.spec) {
                     var icon = getIcon(talent.spec.icon);
-                    var header = React.createElement('div', { style: { height: "fit-content" } },
-                                    React.createElement('div', { style: { width: "150px" } },
-                                        React.createElement('img', {src: icon, style:{ height: "25px"}}, null),
-                                        React.createElement('label', { style: { marginLeft: "5px" } }, talent.spec.name)));
+                    var header = React.createElement('div', { className: "talentControlHeader" },
+                                    React.createElement('div', { },
+                                        React.createElement('img', { src: icon }, null),
+                                        React.createElement('label', { }, talent.spec.name)));
 
                     // Sorting by the tier value first, then mapping spells
                     var spells = talent.talents.sort(function (a, b) { return (a.tier > b.tier) ? 1 : ((b.tier > a.tier) ? -1 : 0); }).map(function (spell) {
@@ -28,7 +28,7 @@
                     });
 
                     return (<Panel key={"ctcPanel-" + talent.spec.name} header={header} eventKey={eventKey++}>
-                                <Well style={{ width: "700px", height: "fit-content" }}>{talent.spec.description}</Well>
+                                <Well className="talentControlDesc">{talent.spec.description}</Well>
                                 <div>
                                     {spells}
                                 </div>
@@ -38,7 +38,8 @@
         }   
 
         return (
-                <div style={{width:"740px", margin:"auto"}}>
+                <div className="talentControl">
+                    <div className="talentLabel">Talents</div>
                     <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect} accordion>
                         {talents}
                     </PanelGroup>
@@ -51,9 +52,7 @@ var TalentSpell = React.createClass({
     getLevel: function(tier){
         var level = 15 * (tier + 1);
 
-        if (level > 90) {
-            level = 100;
-        }
+        if (level > 90) { level = 100; }
 
         return level;
     },
@@ -66,10 +65,10 @@ var TalentSpell = React.createClass({
         //var desc = spell.description
 
         return (
-                <div style={{height: "40px"}}>
-                    <div style={{float: "left", height: "36px", width: "15px"}}>{lvl}</div>
-                    <img src={icon} style={{float: "left", height: "36px", width: "36px", marginLeft: "15px"}} />
-                    <div style={{float: "left", marginLeft: "5px"}}>{spell.name}</div>
+                <div className="talentSpellControl">
+                    <div className="talentSpellControlLvl">{lvl}</div>
+                    <img src={icon} />
+                    <div className="talentSpellControlName">{spell.name}</div>
                 </div>
                 );
     }

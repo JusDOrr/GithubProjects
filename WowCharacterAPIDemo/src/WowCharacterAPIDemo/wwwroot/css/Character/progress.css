@@ -1,0 +1,39 @@
+﻿.progressControl{
+    width: 740px;
+    margin: auto;
+}
+
+.progressControlWell{
+    width: 740px;
+    margin: auto;
+}
+
+.raidWell{
+    display: inline-block;
+    width: 350px;
+    margin: auto;
+}
+
+.raidWell img{
+    width: 310px;
+    height: 100px;
+    background-size: contain;
+}
+
+.raid{
+    width: 250px;
+    margin: auto;
+}
+
+.raid div{
+    display: inline-block;
+    width: 50px;
+    vertical-align: top;
+}
+
+.raidProgressBar{
+    background-color: grey;
+    display: inline-block;
+    width: 190px;
+    margin-left: 5px;
+}

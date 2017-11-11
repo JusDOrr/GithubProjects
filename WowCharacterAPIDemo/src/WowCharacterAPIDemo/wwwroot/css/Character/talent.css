@@ -1,0 +1,51 @@
+﻿.talentControl{
+    width: 740px;
+    margin: auto;
+}
+
+.talentControlDesc{
+    width: 700px;
+    height: fit-content;
+}
+
+.talentControlHeader{
+    height: fit-content;
+}
+
+.talentControlHeader div{
+    width: 150px;
+}
+
+.talentControlHeader img{
+    height: 25px;
+}
+
+.talentControlHeader label{
+    margin-left: 5px;
+}
+
+.talentLabel {
+    margin-top: 15px;
+}
+
+.talentSpellControl {
+    height: 40px;
+}
+
+.talentSpellControl img {
+    float: left;
+    height: 36px;
+    width: 36px;
+    margin-left: 15px;
+}
+
+.talentSpellControlLvl {
+    float: left;
+    height: 36px;
+    width: 15px;
+}
+
+.talentSpellControlName {
+    float: left;
+    margin-left: 5px;
+}

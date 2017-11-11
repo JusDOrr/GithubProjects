@@ -112,6 +112,7 @@ var CharacterLayout = React.createClass({
                     </div>
                     <Stats data={char.stats} />
                     <Talents data={char.talents} />
+                    <ProgressionControl data={char.progression} />
                 </div>
                 );
     }

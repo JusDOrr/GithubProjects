@@ -19,7 +19,7 @@ var getAPIPath = function (apitype, realm, character) {
           break;
        case APIType.Characters:
           if(realm && character)
-            apiPath = "https://us.api.battle.net/wow/character/" + realm + "/" + character + "?fields=talents,stats,items,guild,titles&locale=" + locale + addAPIKeyField();
+             apiPath = "https://us.api.battle.net/wow/character/" + realm + "/" + character + "?fields=talents,stats,items,guild,titles,progression&locale=" + locale + addAPIKeyField();
           break;
     }
 
@@ -62,6 +62,13 @@ var getIcon = function (icon) {
 // Downloaded for easier use... This is no longer used...
 var getEmptyGearSlots = function () {
    return "https://worldofwarcraft.akamaized.net/static/components/GameIcon/GameIcon-slots.png";
+};
+
+var getRaidImage = function (raidName) {
+   var prepared = raidName.replace(/ /g,"-").toLowerCase();
+   var img = "https://render-us.worldofwarcraft.com/zones/" + prepared + "-small.jpg";
+
+   return img;
 };
 
 var getRaceInfo = function (race) {
@@ -155,6 +162,7 @@ var getFactionColor = function (faction) {
    return element;
 };
 
+// STATS
 //HEALTH{color:#27cc4e}
 //STAMINA{color:#ff8b2d}
 //ENERGY{color:#cb9501}
@@ -173,3 +181,8 @@ var getFactionColor = function (faction) {
 //HASTE{color:#0ed59b}
 //MASTERY{color:#9256ff}
 //VERSATILITY{color:#bfbfbf}
+
+// PROGRESS
+//progressLevel=low]{background:#99755c
+//progressLevel=medium]{background:#c76700
+//progressLevel=high]{background:#1b9601
