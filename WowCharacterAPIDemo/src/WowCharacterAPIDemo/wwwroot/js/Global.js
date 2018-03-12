@@ -6,6 +6,25 @@
 
 var addAPIKeyField = function () { return "&apikey=83pjrytmmwp4zv96jbe4ht8j6xtbdfw2"; };
 
+var GET = function (apiPath, loadCallBack, errorCallBack) {
+    if (apiPath != "") {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('get', apiPath, true);
+
+        xhr.onload = function () {
+            var data = JSON.parse(xhr.responseText);
+            loadCallBack(data);
+        }.bind(this);
+
+        xhr.onerror = function (e) {
+            errorCallBack(e);
+        }.bind(this);
+
+        xhr.send();
+    }
+};
+
 var getAPIPath = function (apitype, realm, character) {
     var apiPath = "";
     var locale = "en_US";

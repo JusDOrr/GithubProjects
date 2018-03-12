@@ -5,18 +5,17 @@ var MountControl = React.createClass({
         return { data: [] };
     },
     componentDidMount: function () {
-        this.loadCommentsFromServer();
+        this.loadMountsFromServer();
     },
-    loadCommentsFromServer: function () {
+    loadMountsFromServer: function () {
         var apiPath = getAPIPath(APIType.Mounts);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('get', apiPath, true);
-        xhr.onload = function () {
-            var data = JSON.parse(xhr.responseText);
-            this.setState({ data: data.mounts });
-        }.bind(this);
-        xhr.send();
+        GET(apiPath, this.onload, this.onerror);
+    },
+    onload: function (data) {
+        this.setState({ data: data.mounts });
+    },
+    onerror: function (e) {
+        // Nothing with this yet
     },
     render: function () {
         var Well = ReactBootstrap.Well,

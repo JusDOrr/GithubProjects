@@ -1,27 +1,19 @@
 ﻿var CharacterControl = React.createClass({
     getInitialState: function () {
-        return {
-            data: null
-        };
+        return { data: null };
     },
     componentDidMount: function () {
         this.loadCharacterFromServer(null, null);
     },
     loadCharacterFromServer: function (realm, character) {
         var apiPath = getAPIPath(APIType.Characters, realm, character);
-
-        if (apiPath != "") {
-            var xhr = new XMLHttpRequest();
-            xhr.open('get', apiPath, true);
-            xhr.onload = function () {
-                var data = JSON.parse(xhr.responseText);
-                this.setState({ data: data });
-            }.bind(this);
-            xhr.onerror = function (e) {
-                // Nothing with this yet...
-            }.bind(this);
-            xhr.send();
-        }
+        GET(apiPath, this.onload, this.onerror);
+    },
+    onload: function (data) {
+        this.setState({ data: data });
+    },
+    onerror: function (e) {
+        // Nothing with this yet
     },
     onSearchClick: function () {
         var realm = document.getElementById('formControlsRealm').value;
