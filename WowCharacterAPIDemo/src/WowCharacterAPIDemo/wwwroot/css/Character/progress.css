@@ -1,22 +1,30 @@
 ﻿.progressControl{
-    width: 740px;
     margin: auto;
+    font-size: xx-large;
+    text-align: center;
 }
 
 .progressControlWell{
-    width: 740px;
+    width: var(--ControlWidth);
     margin: auto;
+    /*text-align: center;*/
 }
 
 .raidWell{
     display: inline-block;
-    width: 350px;
+    width: 365px;
     margin: auto;
+
+    background-image: var(--RaidBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
 }
 
 .raidWell img{
-    width: 310px;
-    height: 100px;
+    width: 325px;
+    height: 110px;
     background-size: contain;
 }
 

@@ -1,11 +1,66 @@
 ﻿.talentControl{
-    width: 740px;
+    width: var(--ControlWidth);
     margin: auto;
 }
 
-.talentControlDesc{
-    width: 700px;
-    height: fit-content;
+.horde-talentcontrolPanel {
+    background-image: var(--HordeBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
+}
+
+.horde-talentControlPanel > .panel-heading {
+    background-image: var(--HordeBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
+}
+
+.horde-talentControlDesc{
+    width: 275px;
+    height: 160px;
+    float: left;
+
+    margin-bottom: 0;
+
+    background-image: var(--HordeBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
+}
+
+.alli-talentControlPanel {
+    background-image: var(--AlliBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
+}
+
+.alli-talentControlPanel > .panel-heading {
+    background-image: var(--AlliBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
+}
+
+.alli-talentControlDesc{
+    width: 275px;
+    height: 160px;
+    float: left;
+    
+    margin-bottom: 0;
+
+    background-image: var(--AlliBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: var(--GoldColor);
 }
 
 .talentControlHeader{
@@ -25,11 +80,16 @@
 }
 
 .talentLabel {
-    margin-top: 15px;
+    margin-top: 10px;
+    font-size: xx-large;
+    text-align: center;
 }
 
 .talentSpellControl {
+    margin-left: 10px;
+    width: 210px;
     height: 40px;
+    float: right;
 }
 
 .talentSpellControl img {
@@ -48,4 +108,5 @@
 .talentSpellControlName {
     float: left;
     margin-left: 5px;
+    font-size: small;
 }

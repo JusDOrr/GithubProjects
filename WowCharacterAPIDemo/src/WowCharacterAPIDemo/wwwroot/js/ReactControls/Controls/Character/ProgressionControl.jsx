@@ -5,7 +5,7 @@
         var progression = this.props.data;
 
         // Current Content Raids are: The Emerald Nightmare, Trial of Valor, The Nighthold, and Tomb of Sargeras
-        var raids = progression.raids.slice(progression.raids.length - 4, progression.raids.length).map(function (raid) {
+        var raids = progression.raids.slice(progression.raids.length - 5, progression.raids.length).map(function (raid) {
             return React.createElement(Raid, { key:"Raid-" + raid.name, data: raid }, null);
         });;
 
@@ -54,7 +54,7 @@ var Raid = React.createClass({
                 <Well className="raidWell">
                     <img src={raidImg} />
                     <div>{raid.name}</div>
-                    <div>Level 110</div>
+                    <div style={{ color: "#c69b6d", fontSize: "x-small"}}>Level 110</div>
                     <div>
                         {lfrProg}
                         {normProg}

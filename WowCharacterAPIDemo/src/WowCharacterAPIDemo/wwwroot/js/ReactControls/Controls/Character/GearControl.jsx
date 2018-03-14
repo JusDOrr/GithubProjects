@@ -60,7 +60,7 @@ var ItemsLeftSide = React.createClass({
         var Tabard = React.createElement(ItemLeftSideCell, { data: side.tabard, emptyIcon: "EmptyTabard" }, null);
         var Wrist = React.createElement(ItemLeftSideCell, { data: side.wrist, emptyIcon: "EmptyWrists" }, null);
 
-        return (<div style={ { width: "370px", minHeight: "375px", float: "left", display: "inline-block" }}>
+        return (<div style={ { width: "385px", minHeight: "375px", float: "left", display: "inline-block" }}>
                     {Head}{Neck}{Shoulder}{Back}{Chest}{Shirt}{Tabard}{Wrist}
                 </div>);
     }
@@ -79,7 +79,7 @@ var ItemsRightSide = React.createClass({
         var Trinket1 = React.createElement(ItemRightSideCell, { data: side.trinket1, emptyIcon: "EmptyTrinket1" }, null);
         var Trinket2 = React.createElement(ItemRightSideCell, { data: side.trinket2, emptyIcon: "EmptyTrinket2" }, null);
 
-        return (<div style={ { width: "370px", minHeight: "375px", float: "right", display: "inline-block" } }>
+        return (<div style={ { width: "385px", minHeight: "375px", float: "right", display: "inline-block" } }>
                     {Hands}{Waist}{Legs}{Feet}{Finger1}{Finger2}{Trinket1}{Trinket2}
                 </div>);
     }
@@ -92,7 +92,7 @@ var ItemsBottom = React.createClass({
         var Main = React.createElement(ItemIconRightCell, { data: side.mainhand, emptyIcon: "EmptyMainHand" }, null);
         var Off = React.createElement(ItemIconLeftCell, { data: side.offhand, emptyIcon: "EmptyOffHand" }, null);
 
-        return (<div style={ { display: "flex", width: "740px" } }>
+        return (<div style={ { display: "flex", width: "var(--ControlWidth)" } }>
                     <div style={ { width: "52%" } }>{Main}</div>
                     <div style={ { width: "48%", marginLeft: "20px" } }>{Off}</div>
                 </div>);
@@ -103,7 +103,7 @@ var ItemLeftSideCell = React.createClass({
     render: function () {
         var info = React.createElement(ItemIconLeftCell, { data: this.props.data, emptyIcon: this.props.emptyIcon }, null);
 
-        return (<div style={{height: "40px", marginBottom: "20px"}}>{info}</div>);
+        return (<div style={{height: "40px", marginBottom: "25px"}}>{info}</div>);
     }
 });
 
@@ -111,7 +111,7 @@ var ItemRightSideCell = React.createClass({
     render: function () {
         var info = React.createElement(ItemIconRightCell, { data: this.props.data, emptyIcon: this.props.emptyIcon }, null);
 
-        return (<div style={{ height: "40px", marginBottom: "20px" } }>{info}</div>);
+        return (<div style={{ height: "40px", marginBottom: "25px" } }>{info}</div>);
     }
 });
 

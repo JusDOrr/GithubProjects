@@ -1,0 +1,26 @@
+1) Complete Stats Control
+	-Currently hard coded to show only warrior
+	-This will take some time...
+
+2) Fix Talents Control
+	-Talents come back from server in a strange order
+	-Need to show 2 columns of stats (15-60) & (75+)
+
+3) Achievements
+	-Implement
+
+4) Collections
+	-Implement
+
+5) Raid Progress
+	-Implement
+
+6) PVP
+	-Implement
+
+7) Reputation
+	-Implement
+
+8) "Sticky" Nameplate and NavBars
+	-Implement
+	-https://www.w3schools.com/howto/howto_js_navbar_sticky.asp

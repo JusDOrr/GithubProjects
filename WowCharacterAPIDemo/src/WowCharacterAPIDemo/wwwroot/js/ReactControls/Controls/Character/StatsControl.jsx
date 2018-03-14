@@ -1,9 +1,25 @@
 ﻿var Stats = React.createClass({
+    getTableCell: function (img, stat, title) {
+        return(
+            <td style={{borderTop: "transparent"}}>
+                <img src={img} />                                       
+                <div>
+                    <div>{stat}</div>
+                    <div>{title}</div>
+                </div>
+            </td>
+            );
+    },
+    getStatClass: function (faction) {
+        var className = "alli-stats";
+
+        if (faction === "Horde")
+            className = "horde-stats";
+
+        return className;
+    },
     render: function () {
         var Well = ReactBootstrap.Well,
-            Grid = ReactBootstrap.Grid,
-            Row = ReactBootstrap.Row,
-            Col = ReactBootstrap.Col,
             Table = ReactBootstrap.Table;
 
         var stats = this.props.data;
@@ -11,73 +27,27 @@
         if (!stats)
             return null;
 
+        var className = this.getStatClass(this.props.faction);
+
         // TODO: HARD CODED WARRIOR RIGHT NOW, MUST UPDATE
         var classStats = getClassStats(1, stats);
 
         // TODO: AM I ALLOWED TO USE THIS? /static/components/Icon/Icon.svg#haste
         return (
-                <Well style={{ width: "740px", margin: "auto", height: "200px" }}>
+                <Well className={className}>
                     <Table>
                         <tbody>
-                            <tr>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent"}}>
-                                    <img src="/images/Stats/Health.png" style={{ width: "55px" , display: "inline-block" }} />                                       
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{classStats.health.toLocaleString()}</div>
-                                        <div>HEALTH</div>
-                                    </div>
-                                </td>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/Rage.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{classStats.power.toLocaleString()}</div>
-                                        <div>RAGE</div>
-                                    </div>
-                                </td>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/Strength.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{classStats.str.toLocaleString()}</div>
-                                        <div>STRENGTH</div>
-                                    </div>
-                                </td>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/Stamina.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{classStats.sta.toLocaleString()}</div>
-                                        <div>STAMINA</div>
-                                    </div>
-                                </td>
+                            <tr className="stats-tr">
+                                {this.getTableCell("/images/Stats/Health.png", classStats.health.toLocaleString(), "HEALTH")}
+                                {this.getTableCell("/images/Stats/Rage100.png", classStats.power.toLocaleString(), "RAGE")}
+                                {this.getTableCell("/images/Stats/Strength100.png", classStats.str.toLocaleString(), "STRENGTH")}
+                                {this.getTableCell("/images/Stats/Stamina.png", classStats.sta.toLocaleString(), "STAMINA")}
                             </tr>
-                            <tr>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/CriticalStrike.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{Math.round(classStats.crit)}%</div>
-                                        <div>CRITICAL STRIKE</div>
-                                    </div>
-                                </td>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/Haste.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{Math.round(classStats.haste)}%</div>
-                                        <div>HASTE</div>
-                                    </div>
-                                </td>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/Mastery.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{Math.round(classStats.mastery)}%</div>
-                                        <div>MASTERY</div>
-                                    </div>
-                                </td>
-                                <td style={{ display: "inline-block", width: "25%", height: "75px", borderTop: "transparent" }}>
-                                    <img src="/images/Stats/Versatility.png" style={{ width: "55px", display: "inline-block" }} />
-                                    <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" }}>
-                                        <div>{Math.round(classStats.versatilityDamageDoneBonus)}%</div>
-                                        <div>VERSATILITY</div>
-                                    </div>
-                                </td>
+                            <tr className="stats-tr">
+                                {this.getTableCell("/images/Stats/CriticalStrike100.png", Math.round(classStats.crit)+"%", "CRITICAL STRIKE")}
+                                {this.getTableCell("/images/Stats/Haste.png", Math.round(classStats.haste)+"%", "HASTE")}
+                                {this.getTableCell("/images/Stats/Mastery100.png", Math.round(classStats.mastery)+"%", "MASTERY")}
+                                {this.getTableCell("/images/Stats/Versatility.png", Math.round(classStats.versatilityDamageDoneBonus)+"%", "VERSATILITY")}
                             </tr>
                         </tbody>
                     </Table>

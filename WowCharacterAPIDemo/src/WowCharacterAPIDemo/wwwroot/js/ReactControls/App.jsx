@@ -12,7 +12,7 @@
 
         return (
                 <div>
-                    <NavBar></NavBar>
+                    <HeaderNavBar></HeaderNavBar>
                     {this.props.children}
                     {footer}
                 </div>
@@ -24,7 +24,7 @@ ReactDOM.render(
   <ReactRouter.Router history={ReactRouter.hashHistory}>
     <ReactRouter.Route path="/" component={App}>
       <ReactRouter.IndexRoute component={RealmStatusControl} />
-      <ReactRouter.Route path="armory" component={CharacterControl} />
+      <ReactRouter.Route path="armory" component={ArmoryControl} />
       <ReactRouter.Route path="mounts" component={MountControl} />
     </ReactRouter.Route>
   </ReactRouter.Router>,

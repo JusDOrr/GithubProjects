@@ -5,11 +5,30 @@
     handleSelect: function (activeKey) {
         this.setState({ activeKey });
     },
+    getTalentClass: function (faction) {
+        var className = "alli-talentcontrolPanel";
+
+        if (faction === "Horde")
+            className = "horde-talentcontrolPanel";
+
+        return className;
+    },
+    getTalentDescClass: function (faction) {
+        var className = "alli-talentControlDesc";
+
+        if (faction === "Horde")
+            className = "horde-talentControlDesc";
+
+        return className;
+    },
     render: function () {
         var PanelGroup = ReactBootstrap.PanelGroup;
         var Panel = ReactBootstrap.Panel;
         var Well = ReactBootstrap.Well;
         var talentsData = this.props.data;
+
+        var ControlPanelClass = this.getTalentClass(this.props.faction);
+        var ControlPanelDescClass = this.getTalentDescClass(this.props.faction);
 
         var talents = "";
         if (talentsData) {
@@ -22,18 +41,19 @@
                                         React.createElement('img', { src: icon }, null),
                                         React.createElement('label', { }, talent.spec.name)));
 
-                    // Sorting by the tier value first, then mapping spells
-                    var spells = talent.talents.sort(function (a, b) { return (a.tier > b.tier) ? 1 : ((b.tier > a.tier) ? -1 : 0); }).map(function (spell) {
+                    // (No longer) Sorting by the tier value first, then mapping spells
+                    //.sort(function (a, b) { return (a.tier > b.tier) ? 1 : ((b.tier > a.tier) ? -1 : 0); })
+                    var spells = talent.talents.map(function (spell) {
                         return React.createElement(TalentSpell, { key:"talentSpell-" + spell.spell.name }, spell.spell, spell.tier);
                     });
 
-                    return (<Panel key={"ctcPanel-" + talent.spec.name} header={header} eventKey={eventKey++}>
-                                <Well className="talentControlDesc">{talent.spec.description}</Well>
+                    return (<Panel className={ControlPanelClass} key={"ctcPanel-" + talent.spec.name} header={header} eventKey={eventKey++ }>
+                                <Well className={ControlPanelDescClass}>{talent.spec.description}</Well>
                                 <div>
                                     {spells}
                                 </div>
                             </Panel>);
-            }
+                }
             });
         }   
 

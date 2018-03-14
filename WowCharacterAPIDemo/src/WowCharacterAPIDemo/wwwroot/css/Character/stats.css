@@ -1,0 +1,39 @@
+﻿.alli-stats {
+    width: var(--ControlWidth);
+    height: 200px;
+    margin: auto;
+
+    background-image: var(--AlliBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.horde-stats {
+    width: var(--ControlWidth);
+    height: 200px;
+    margin: auto;
+    
+    background-image: var(--HordeBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.stats-tr > td {
+    display: inline-block;
+    width: 25%;
+    height: 75px;
+
+    color: var(--GoldColor);
+}
+
+.stats-tr > td > img {
+    display: inline-block;
+    width: 55px;
+}
+
+.stats-tr > td > div {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-size: small;
+}

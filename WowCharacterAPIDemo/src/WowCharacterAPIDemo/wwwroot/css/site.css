@@ -1,8 +1,78 @@
 ﻿/* GLOBAL CSS */
 
-.navbar {
+:root {
+    --HordeBackImage: url("/images/RedChalkboard.jpg");
+    --AlliBackImage: url("/images/BlueChalkboard.jpg");
+    --RaidBackImage: url("/images/GreenChalkboard.jpg");
+
+    --HordeColor: rgb(80, 0, 0);
+    --AlliColor: rgb(0, 0, 80);
+    --GoldColor: rgb(248, 183, 0);
+
+    --ControlWidth: 775px;
+}
+
+.navbarHeader {
     margin: 0;
 }
+
+/* ARMORY NAV BAR */
+
+.alli-navArmory {
+    width: var(--ControlWidth);
+    margin: auto;
+    /*background-color: rgb(0, 0, 80);*/
+    background-image: url("/images/BlueChalkboard.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.alli-navArmory > li.active > a {
+    color: rgb(0, 0, 80);
+    background-color: var(--GoldColor);
+}
+.alli-navArmory > li.active > a:hover, .alli-navArmory > li.active > a:focus {
+    color: rgb(0, 0, 80);
+    background-color: var(--GoldColor);
+}
+.alli-navArmory > li > a:hover {
+    color: rgb(0, 0, 80);
+    background-color: var(--GoldColor);
+}
+
+.alli-nav-item > a {
+    color: var(--GoldColor);
+}
+
+.horde-navArmory {
+    width: var(--ControlWidth);
+    margin: auto;
+    /*background-color: rgb(80, 0, 0);*/
+    background-image: url("/images/RedChalkboard.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.horde-navArmory > li.active > a {
+    color: rgb(80, 0, 0);
+    background-color: var(--GoldColor);
+}
+.horde-navArmory > li.active > a:hover, .horde-navArmory > li.active > a:focus {
+    color: rgb(80, 0, 0);
+    background-color: var(--GoldColor);
+}
+.horde-navArmory > li > a:hover {
+    color: rgb(0, 0, 80);
+    background-color: var(--GoldColor);
+}
+
+.horde-nav-item > a {
+    color: var(--GoldColor);
+}
+
+/* END ARMORY NAV BAR */
 
 .pageWell {
     /*background: #2C4770;*/
@@ -21,6 +91,7 @@
 
 .pageHeader h1 {
     font-size: 54px;
+    margin-top: 0;
 }
 
 .pageDescription {

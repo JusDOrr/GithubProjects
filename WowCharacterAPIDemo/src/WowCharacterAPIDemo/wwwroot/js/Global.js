@@ -4,10 +4,38 @@
     Characters: "Characters"
 });
 
-var addAPIKeyField = function () { return "&apikey=83pjrytmmwp4zv96jbe4ht8j6xtbdfw2"; };
+var ArmoryNavType = Object.freeze({
+   Character: 1,
+   Achievements: 2,
+   Collections: 3,
+   RaidProgress: 4,
+   PVP: 5,
+   Reputation: 6
+});
+
+var FactionType = Object.freeze({
+   Neutral: 1,
+   Alliance: 2,
+   Horde: 3
+});
+
+var GetArmoryNavType = function (val) {
+   switch (val) {
+      case 1: return ArmoryNavType.Character;
+      case 2: return ArmoryNavType.Achievements;
+      case 3: return ArmoryNavType.Collections;
+      case 4: return ArmoryNavType.RaidProgress;
+      case 5: return ArmoryNavType.PVP;
+      case 6: return ArmoryNavType.CharacterReputation;
+
+      default: return ArmoryNavType.Character;
+   }
+};
+
+var addAPIKeyField = function () { return ""; };
 
 var GET = function (apiPath, loadCallBack, errorCallBack) {
-    if (apiPath != "") {
+    if (apiPath !== "") {
         var xhr = new XMLHttpRequest();
 
         xhr.open('get', apiPath, true);
@@ -84,7 +112,7 @@ var getEmptyGearSlots = function () {
 };
 
 var getRaidImage = function (raidName) {
-   var prepared = raidName.replace(/ /g,"-").toLowerCase();
+   var prepared = raidName.replace(',','').replace(/ /g,"-").toLowerCase();
    var img = "https://render-us.worldofwarcraft.com/zones/" + prepared + "-small.jpg";
 
    return img;
