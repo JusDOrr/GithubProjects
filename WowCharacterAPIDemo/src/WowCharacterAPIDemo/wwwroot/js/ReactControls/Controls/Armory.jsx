@@ -2,12 +2,8 @@
     getInitialState: function () {
         return { data: null };
     },
-    componentDidMount: function () {
-        this.loadCharacterFromServer(null, null);
-    },
     loadCharacterFromServer: function (realm, character) {
-        var apiPath = getAPIPath(APIType.Characters, realm, character);
-        GET(apiPath, this.onload, this.onerror);
+        GetCharacter(this.onload, this.onerror, realm, character);
     },
     onload: function (data) {
         this.setState({ data: data });
@@ -110,6 +106,7 @@ var ArmoryBody = React.createClass({
                     <Well style={{ width: "var(--ControlWidth)", margin: "auto", backgroundImage: "url(" + backgroundImg + ")", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
                         <NamePlate data={char} />
                     </Well>
+                    <PvpPlate />
                     <ArmoryNavBar selectCallback={this.onSelect} faction={raceInfo.faction}/>
                     {ArmoryControl}
                 </div>
@@ -117,7 +114,46 @@ var ArmoryBody = React.createClass({
     }
 });
 
-// Prestige, Honor, Honorable Kills, 2v2 Rating, 3v3 Rating, BG Rating
+var PvpPlate = React.createClass({
+    renderPrestige: function (text) {
+        return (
+            <div className="armory-pvp-plate tooltip">
+                <span className="tooltiptext tooltip-top">Prestige Level</span>
+                <div style={{display: "inline-block"}}>
+                    <img src="/images/Pvp/Prestige.png" style={{marginLeft: "-10px"}} />
+                </div>
+                {text}
+            </div>
+            )
+    },
+    renderItem: function (imgSource, icon, tooltip, text) {
+        return (
+            <div className="armory-pvp-plate tooltip">
+                <span className="tooltiptext tooltip-top">{tooltip}</span>
+                <div style={{display: "inline-block"}}>
+                    <img src={imgSource} />
+                    <div style={{ position: "absolute", top: "12px", left: "12px" }}>{icon}</div>
+                </div>
+                {text}
+            </div>
+            )
+    },
+    render: function () {
+        var Well = ReactBootstrap.Well;
+
+        return (
+                <Well className="armory-pvp">
+                    {this.renderPrestige("0")}
+                    {this.renderItem("/images/Pvp/Honor.png", "", "Honor Level", "22")}
+                    {this.renderItem("/images/Pvp/HonorableKills.png", "", "Honorable Kills", "16535")}
+                    {this.renderItem("/images/Pvp/PvpFrame.png", "2v2", "2v2 Rating", "96")}
+                    {this.renderItem("/images/Pvp/PvpFrame.png", "3v3", "3v3 Rating", "0")}
+                    {this.renderItem("/images/Pvp/PvpFrame.png", "BG", "Battlegrounds Rating", "0")}
+                </Well>
+                );
+    }
+});
+
 var NamePlate = React.createClass({
     render: function () {
         return (
@@ -126,7 +162,7 @@ var NamePlate = React.createClass({
                     <InfoSection data={this.props.data} />
                 </div>
                 );
-}
+    }
 });
 
 var NameSection = React.createClass({
@@ -150,13 +186,13 @@ var NameSection = React.createClass({
         return (
                 <div style={{ height: "100px", display: "inline-block" }}>
                     <div style={{ backgroundImage: "url(" + logo + ")" , float: "left" , width: "77.5px" , height: "100px" , backgroundSize: "100%" }} />
-<div style={{ float: "left" , marginLeft: "10px" , marginTop: "20px", paddingRight: "10px",  height: "60px", borderRight: "solid grey", borderRightWidth: "thin" }}>
+                        <div style={{ float: "left" , marginLeft: "10px" , marginTop: "20px", paddingRight: "10px",  height: "60px", borderRight: "solid grey", borderRightWidth: "thin" }}>
                         <div style={{ fontSize: "36px", color: classInfo.color, height: "40px" }}>{char.name}</div>
                         <div style={{ fontSize: "14px" , color: "white" , height: "40px" }}>{title}</div>
                     </div>
                 </div>
                 );
-}
+    }
 });
 
 var InfoSection = React.createClass({
@@ -178,11 +214,11 @@ var InfoSection = React.createClass({
                 <div style={{ height: "100px", display: "inline-block", position: "absolute", paddingLeft: "10px", color: "#f8b700", fontSize: "14px" }}>
                     <div style={{ height: "20px", marginTop: "35px" }}>
                         <div style={{ backgroundImage: "url(" + shieldicon + ")", float: "left", width: "16px", height: "16px", backgroundSize: "100%" }} />
-<div style={{ float: "left", marginLeft: "5px" } }>{char.achievementPoints}</div>
-<div style={{ backgroundImage: "url(" + swordsicon + ")", float: "left", width: "16px", height: "16px", backgroundSize: "100%", marginLeft: "5px" }} />
-<div style={{ float: "left", marginLeft: "5px" } }>{itemlvl} ILVL</div>
-</div>
-<div style={{ height: "20px", color: "white" }}>
+                            <div style={{ float: "left", marginLeft: "5px" } }>{char.achievementPoints}</div>
+                            <div style={{ backgroundImage: "url(" + swordsicon + ")", float: "left", width: "16px", height: "16px", backgroundSize: "100%", marginLeft: "5px" }} />
+                            <div style={{ float: "left", marginLeft: "5px" } }>{itemlvl} ILVL</div>
+                        </div>
+                        <div style={{ height: "20px", color: "white" }}>
                         <div style={{ float: "left" }}>{char.level}</div>
                         <div style={{ float: "left", marginLeft: "5px" } }>{raceInfo.race}</div>
                         <div style={{ float: "left", marginLeft: "5px" } }>{classInfo.name}</div>
@@ -191,5 +227,5 @@ var InfoSection = React.createClass({
                     </div>
                 </div>
                 );
-}
+    }
 });

@@ -8,8 +8,7 @@ var MountControl = React.createClass({
         this.loadMountsFromServer();
     },
     loadMountsFromServer: function () {
-        var apiPath = getAPIPath(APIType.Mounts);
-        GET(apiPath, this.onload, this.onerror);
+        GetMounts(this.onload, this.onerror);
     },
     onload: function (data) {
         this.setState({ data: data.mounts });

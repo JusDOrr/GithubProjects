@@ -21,11 +21,11 @@
 .alli-navArmory {
     width: var(--ControlWidth);
     margin: auto;
-    /*background-color: rgb(0, 0, 80);*/
+
     background-image: url("/images/BlueChalkboard.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 .alli-navArmory > li.active > a {
@@ -48,11 +48,12 @@
 .horde-navArmory {
     width: var(--ControlWidth);
     margin: auto;
-    /*background-color: rgb(80, 0, 0);*/
+
     background-image: url("/images/RedChalkboard.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 5px;
+
+    border-radius: 4px;
 }
 
 .horde-navArmory > li.active > a {
@@ -70,6 +71,31 @@
 
 .horde-nav-item > a {
     color: var(--GoldColor);
+}
+
+.armory-pvp {
+    width: var(--ControlWidth);
+    margin: 0 auto auto auto;
+    padding: 0;
+
+    border-top: 0;
+    background-image: url("../images/GreyChalkboard.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.armory-pvp-plate {
+    display: inline-block;
+    width: fit-content;
+    padding: 0 2px 0 2px;
+    color: Gold;
+}
+
+.armory-pvp-plate > div > img {
+    width: 40px;
 }
 
 /* END ARMORY NAV BAR */
@@ -147,6 +173,45 @@
 }
 
 .tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* Gear Tooltip container */
+.tooltip-gear {
+    position: relative;
+    opacity: 100;
+}
+
+/* Tooltip text */
+.tooltip-gear .tooltiptext-gear {
+    visibility: hidden;
+
+    height: auto;
+    width: auto;
+    max-width: 350px;
+    min-width: 250px;
+    
+    background-color: rgba(0, 0, 0, 0.90);
+    border: 3px solid rgb(52, 52, 52);
+    border-radius: 6px;
+
+    padding: 5px 0;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 10;
+}
+
+.tooltip-top-left-gear {
+    top: 0;
+    left: 50px;
+}
+
+.tooltip-top-right-gear {
+    top: 0;
+    right: 50px;
+}
+
+.tooltip-gear:hover .tooltiptext-gear {
     visibility: visible;
 }
 

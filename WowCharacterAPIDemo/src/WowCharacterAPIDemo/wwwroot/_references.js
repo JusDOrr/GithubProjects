@@ -1,4 +1,7 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/data/class.js" />
+/// <reference path="js/data/item.js" />
+/// <reference path="js/data/stats.js" />
 /// <reference path="js/global.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />

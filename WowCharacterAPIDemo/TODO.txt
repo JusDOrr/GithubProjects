@@ -1,26 +1,34 @@
-1) Complete Stats Control
-	-Currently hard coded to show only warrior
-	-This will take some time...
+1) Gear ToolTip
+	-Item Sets and Socket Info
+	-Fix sell price is creation
+	-Fix certain descriptions showing up with strange math
 
 2) Fix Talents Control
 	-Talents come back from server in a strange order
 	-Need to show 2 columns of stats (15-60) & (75+)
+	-Finish work...
 
-3) Achievements
+3) Complete Stats Control
+	-Currently hard coded to show only warrior
+	-This will take some time...
+
+4) Fix item display the way gear tool tip was fixed?
+
+5) Achievements
 	-Implement
 
-4) Collections
+6) Collections
 	-Implement
 
-5) Raid Progress
+7) Raid Progress
 	-Implement
 
-6) PVP
+8) PVP
 	-Implement
 
-7) Reputation
+9) Reputation
 	-Implement
 
-8) "Sticky" Nameplate and NavBars
+10) "Sticky" Nameplate and NavBars
 	-Implement
 	-https://www.w3schools.com/howto/howto_js_navbar_sticky.asp

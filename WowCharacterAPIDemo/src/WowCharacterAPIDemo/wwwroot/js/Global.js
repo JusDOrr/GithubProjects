@@ -1,7 +1,7 @@
-﻿var APIType = Object.freeze({
-    RealmStatus: "Realm Status",
-    Mounts: "Mounts",
-    Characters: "Characters"
+﻿var FactionType = Object.freeze({
+   Neutral: 1,
+   Alliance: 2,
+   Horde: 3
 });
 
 var ArmoryNavType = Object.freeze({
@@ -11,12 +11,6 @@ var ArmoryNavType = Object.freeze({
    RaidProgress: 4,
    PVP: 5,
    Reputation: 6
-});
-
-var FactionType = Object.freeze({
-   Neutral: 1,
-   Alliance: 2,
-   Horde: 3
 });
 
 var GetArmoryNavType = function (val) {
@@ -32,50 +26,56 @@ var GetArmoryNavType = function (val) {
    }
 };
 
+// API CALLS
+// \/
+
 var addAPIKeyField = function () { return ""; };
+var addLocaleField = function () { return "en_US"; };
 
 var GET = function (apiPath, loadCallBack, errorCallBack) {
-    if (apiPath !== "") {
-        var xhr = new XMLHttpRequest();
+   if (apiPath === "")
+      return;
 
-        xhr.open('get', apiPath, true);
+   var xhr = new XMLHttpRequest();
+   xhr.open('get', apiPath, true);
 
-        xhr.onload = function () {
-            var data = JSON.parse(xhr.responseText);
-            loadCallBack(data);
-        }.bind(this);
+   xhr.onload = function () {
+      var data = JSON.parse(xhr.responseText);
+      loadCallBack(data);
+   }.bind(this);
 
-        xhr.onerror = function (e) {
-            errorCallBack(e);
-        }.bind(this);
+   xhr.onerror = function (e) {
+      errorCallBack(e);
+   }.bind(this);
 
-        xhr.send();
-    }
+   xhr.send();
 };
 
-var getAPIPath = function (apitype, realm, character) {
-    var apiPath = "";
-    var locale = "en_US";
+var GetRealmStatus = function (loadCallBack, errorCallBack) {
+   var APIPath = "https://us.api.battle.net/wow/realm/status?locale=" + addLocaleField() + addAPIKeyField();
+   GET(APIPath, loadCallBack, errorCallBack);
+};
 
-    switch (apitype) {
-       case APIType.RealmStatus:
-          apiPath = "https://us.api.battle.net/wow/realm/status?locale=" + locale + addAPIKeyField();
-          break;
-       case APIType.Mounts:
-          apiPath = "https://us.api.battle.net/wow/mount/?locale=" + locale + addAPIKeyField();
-          break;
-       case APIType.Characters:
-          if(realm && character)
-             apiPath = "https://us.api.battle.net/wow/character/" + realm + "/" + character + "?fields=talents,stats,items,guild,titles,progression&locale=" + locale + addAPIKeyField();
-          break;
-    }
+var GetMounts = function (loadCallBack, errorCallBack) {
+   var APIPath = "https://us.api.battle.net/wow/mount/?locale=" + addLocaleField() + addAPIKeyField();
+   GET(APIPath, loadCallBack, errorCallBack);
+};
 
-    return apiPath;
+var GetCharacter = function (loadCallBack, errorCallBack, realm, character) {
+   var APIPath = "https://us.api.battle.net/wow/character/" + realm + "/" + character + "?fields=talents,stats,items,guild,titles,progression&locale=" + addLocaleField() + addAPIKeyField();
+   GET(APIPath, loadCallBack, errorCallBack);
+};
+
+var GetItem = function (loadCallBack, errorCallBack, itemId, context, bonusList) {
+   var ctxt = context ? "\/" + context : "";
+   var bl = bonusList ? "bl=" + bonusList.toString() + "&" : "";
+
+   var APIPath = "https://us.api.battle.net/wow/item/" + itemId + ctxt + "?" + bl + "locale=" + addLocaleField() + addAPIKeyField();
+   GET(APIPath, loadCallBack, errorCallBack);
 };
 
 var getLogo = function (faction) {
    var logo = "";
-
    if (!faction)
       return logo;
 
@@ -88,7 +88,7 @@ var getLogo = function (faction) {
 };
 
 var getAvatar = function (race, gender, thumbnail) {
-   if (race === undefined || gender === undefined || thumbnail === undefined)
+   if ( race === undefined || gender === undefined || thumbnail === undefined )
       return "";
 
    // avatar - character icon / profilemain - character render
@@ -118,49 +118,76 @@ var getRaidImage = function (raidName) {
    return img;
 };
 
-var getRaceInfo = function (race) {
-    var info = {};
+// /\
+// END API CALLS
 
-    switch (race) {
-        case 1: info = { "faction": "Alliance", "race": "Human" }; break;
-        case 2: info = { "faction": "Horde", "race": "Orc" }; break;
-        case 3: info = { "faction": "Alliance", "race": "Dwarf" }; break;
-        case 4: info = { "faction": "Alliance", "race": "Night Elf" }; break;
-        case 5: info = { "faction": "Horde", "race": "Undead" }; break;
-        case 6: info = { "faction": "Horde", "race": "Tauren" }; break;
-        case 7: info = { "faction": "Alliance", "race": "Gnome" }; break;
-        case 8: info = { "faction": "Horde", "race": "Troll" }; break;
-        case 9: info = { "faction": "Horde", "race": "Goblin" }; break;
-        case 10: info = { "faction": "Horde", "race": "Blood Elf" }; break;
-        case 11: info = { "faction": "Alliance", "race": "Draenei" }; break;
-        case 22: info = { "faction": "Alliance", "race": "Worgen" }; break;
-        case 24: info = { "faction": "Neutral", "race": "Pandaren" }; break;
-        case 25: info = { "faction": "Alliance", "race": "Pandaren" }; break;
-        case 26: info = { "faction": "Horde", "race": "Pandaren" }; break;
-    }
+// DATA GETTERS 
+// \/
 
-    return info;
+var getFactionColor = function (faction) {
+   var element = "darkgrey";
+
+   if (faction === "Alliance")
+      element = "#000050";
+   else if (faction === "Horde")
+      element = "#500000";
+
+   return element;
+};
+
+var getRaceInfo = function (value) {
+   var charFact = FactionInfo.find(x => x.id === value);
+
+   if (!charFact)
+      return value;
+
+   return charFact.info;
 };
 
 var getClassInfo = function (value) {
-    var info = "";
+   var charClass = ClassInfo.find(x => x.id === value);
 
-    switch (value) {
-        case 1: info = { "name": "Warrior", "color": "#c69b6d" }; break;
-        case 2: info = { "name": "Paladin", "color": "#f48cba" }; break;
-        case 3: info = { "name": "Hunter", "color": "#aad372" }; break;
-        case 4: info = { "name": "Rogue", "color": "#fff468" }; break;
-        case 5: info = { "name": "Priest", "color": "#f0ebe0" }; break;
-        case 6: info = { "name": "Death Knight", "color": "#c41e3b" }; break;
-        case 7: info = { "name": "Shaman", "color": "#2359ff" }; break;
-        case 8: info = { "name": "Mage", "color": "#68ccef" }; break;
-        case 9: info = { "name": "Warlock", "color": "#9382c9" }; break;
-        case 10: info = { "name": "Monk", "color": "#00ffba" }; break;
-        case 11: info = { "name": "Druid", "color": "#ff7c0a" }; break;
-        case 12: info = { "name": "Demon Hunter", "color": "#a330c9" }; break;
-    }
+   if (!charClass)
+      return value;
 
-    return info;
+   return charClass.info;
+};
+
+var getStatDesc = function (value) {
+   var desc = BonusStats.find(x => x.id === value);
+
+   if (!desc)
+      return value;
+
+   return desc.name;
+};
+
+var getQualityColor = function (value) {
+   var quality = QualityColor.find(x => x.id === value);
+
+   if (!quality)
+      return "#9d9d9d";
+
+   return quality.color;
+};
+
+var getInventoryType = function (value) {
+   var invType = InventoryType.find(x => x.id === value);
+
+   if (!invType)
+      return "unknown";
+
+   return invType.name;
+};
+
+var getInventoryClass = function (mainclass, subclass) {
+   var subclasses = InventoryClass.find(x => x.id === mainclass);
+   var invClass = subclasses.subclasses.find(x => x.subclass === subclass);
+
+   if (!invClass)
+      return "Miscellaneous";
+
+   return invClass.name;
 };
 
 var getClassStats = function (classId, stats) {
@@ -177,59 +204,11 @@ var getClassStats = function (classId, stats) {
    return classStats;
 };
 
-var getQualityColor = function (quality) {
-   var element = "#9d9d9d";
+// /\
+// END DATA GETTERS 
 
-   if (quality === 1)
-      element = "#fff";
-   else if (quality === 2)
-      element = "#1eff00";
-   else if (quality === 3)
-      element = "#0081ff";
-   else if (quality === 4)
-      element = "#c600ff";
-   else if (quality === 5)
-      element = "#ff8000";
-   else if (quality === 6)
-      element = "#e5cc80";
-   else if (quality === 7)
-      element = "#0cf";
-
-   return element;
-};
-
-var getFactionColor = function (faction) {
-   var element = "darkgrey";
-
-   if (faction === "Alliance")
-      element = "#000050";
-   else if (faction === "Horde")
-      element = "#500000";
-
-   return element;
-};
-
-// STATS
-//HEALTH{color:#27cc4e}
-//STAMINA{color:#ff8b2d}
-//ENERGY{color:#cb9501}
-//FOCUS{color:#d45719}
-//FURY{color:#8400ff}
-//INSANITY{color:#60f}
-//MAELSTROM{color:#008fff}
-//MANA{color:#1c8aff}
-//PAIN{color:#d45719}
-//RAGE{color:#ab0000}
-//RUNICPOWER{color:#00bcde}
-//AGILITY{color:#ffd955}
-//INTELLECT{color:#d26cd1}
-//STRENGTH{color:#f33232}
-//CRITICALSTRIKE{color:#e01c1c}
-//HASTE{color:#0ed59b}
-//MASTERY{color:#9256ff}
-//VERSATILITY{color:#bfbfbf}
 
 // PROGRESS
-//progressLevel=low]{background:#99755c
-//progressLevel=medium]{background:#c76700
-//progressLevel=high]{background:#1b9601
+// progressLevel = low    - background: #99755c
+// progressLevel = medium - background: #c76700
+// progressLevel = high   - background: #1b9601

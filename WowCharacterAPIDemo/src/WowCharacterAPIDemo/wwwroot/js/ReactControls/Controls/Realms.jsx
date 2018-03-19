@@ -6,8 +6,7 @@
         this.loadRealmsFromServer();
     },
     loadRealmsFromServer: function () {
-        var apiPath = getAPIPath(APIType.RealmStatus);
-        GET(apiPath, this.onload, this.onerror);
+        GetRealmStatus(this.onload, this.onerror);
     },
     onload: function (data) {
         this.setState({ data: data.realms });
