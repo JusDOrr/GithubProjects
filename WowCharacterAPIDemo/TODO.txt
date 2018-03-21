@@ -1,14 +1,15 @@
 1) Gear ToolTip
 	-Item Sets and Socket Info
-	-Fix sell price is creation
+	-Fix sell price in creation (COMPLETE)
 	-Fix certain descriptions showing up with strange math
+	-Fix occasional item level discrepancy
+	-Fix new search not clearing old tooltips... (COMPLETE)
 
-2) Fix Talents Control
+2) Fix Talents Control (COMPLETE)
 	-Talents come back from server in a strange order
 	-Need to show 2 columns of stats (15-60) & (75+)
-	-Finish work...
 
-3) Complete Stats Control
+3) Complete Stats Control (COMPLETE)
 	-Currently hard coded to show only warrior
 	-This will take some time...
 
@@ -32,3 +33,15 @@
 10) "Sticky" Nameplate and NavBars
 	-Implement
 	-https://www.w3schools.com/howto/howto_js_navbar_sticky.asp
+
+11) Raid Progress Tooltips
+	-Progress per raid teir with number boss kills...
+
+12) Stat Tooltips
+	-Missing details for % based values...
+
+12) Pvp Bar (& tooltips)
+	-Show valid data...
+
+13) Armory Character Image
+	-Move down a bit

@@ -4,6 +4,8 @@
     --HordeBackImage: url("/images/RedChalkboard.jpg");
     --AlliBackImage: url("/images/BlueChalkboard.jpg");
     --RaidBackImage: url("/images/GreenChalkboard.jpg");
+    --ChalkBackImage: url(../../images/GreyChalkboard.jpeg);
+    --TooltipBackImage: url("/images/DarkGrit.jpg");
 
     --HordeColor: rgb(80, 0, 0);
     --AlliColor: rgb(0, 0, 80);
@@ -22,7 +24,7 @@
     width: var(--ControlWidth);
     margin: auto;
 
-    background-image: url("/images/BlueChalkboard.jpg");
+    background-image: var(--AlliBackImage);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 4px;
@@ -49,7 +51,7 @@
     width: var(--ControlWidth);
     margin: auto;
 
-    background-image: url("/images/RedChalkboard.jpg");
+    background-image: var(--HordeBackImage);
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -79,7 +81,7 @@
     padding: 0;
 
     border-top: 0;
-    background-image: url("../images/GreyChalkboard.jpeg");
+    background-image: var(--ChalkBackImage);
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -96,6 +98,18 @@
 
 .armory-pvp-plate > div > img {
     width: 40px;
+}
+
+.armory-character {
+    background-position-x: center;
+    background-position-y: bottom;
+    background-size: 1000px 750px;
+    background-repeat: no-repeat;
+
+    width: var(--ControlWidth);
+    height: 600px;
+
+    margin: auto;
 }
 
 /* END ARMORY NAV BAR */
@@ -190,13 +204,16 @@
     width: auto;
     max-width: 350px;
     min-width: 250px;
+    padding: 5px 0;
     
-    background-color: rgba(0, 0, 0, 0.90);
+    /*background-color: rgba(0, 0, 0, 0.90);*/
+    background-image: var(--TooltipBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
     border: 3px solid rgb(52, 52, 52);
     border-radius: 6px;
 
-    padding: 5px 0;
-    /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 10;
 }

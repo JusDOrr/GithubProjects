@@ -2,6 +2,9 @@
     render: function () {
         var Well = ReactBootstrap.Well;
 
+        if (!this.props.data)
+            return (<div />);
+
         var progression = this.props.data;
 
         // Current Content Raids are: The Emerald Nightmare, Trial of Valor, The Nighthold, and Tomb of Sargeras
@@ -54,7 +57,7 @@ var Raid = React.createClass({
                 <Well className="raidWell">
                     <img src={raidImg} />
                     <div>{raid.name}</div>
-                    <div style={{ color: "#c69b6d", fontSize: "x-small"}}>Level 110</div>
+                    <div style={{ color: "#c69b6d", fontSize: "11px" }}>Level 110</div>
                     <div>
                         {lfrProg}
                         {normProg}

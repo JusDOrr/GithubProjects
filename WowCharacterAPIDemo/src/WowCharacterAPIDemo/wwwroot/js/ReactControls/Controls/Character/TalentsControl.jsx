@@ -22,11 +22,11 @@
         return className;
     },
     render: function () {
-        var PanelGroup = ReactBootstrap.PanelGroup;
-        var Panel = ReactBootstrap.Panel;
-        var Well = ReactBootstrap.Well;
-        var talentsData = this.props.data;
+        var PanelGroup = ReactBootstrap.PanelGroup,
+            Panel = ReactBootstrap.Panel,
+            Well = ReactBootstrap.Well;
 
+        var talentsData = this.props.data;
         var ControlPanelClass = this.getTalentClass(this.props.faction);
         var ControlPanelDescClass = this.getTalentDescClass(this.props.faction);
 
@@ -42,14 +42,15 @@
                                         React.createElement('label', { }, talent.spec.name)));
 
                     // (No longer) Sorting by the tier value first, then mapping spells
-                    //.sort(function (a, b) { return (a.tier > b.tier) ? 1 : ((b.tier > a.tier) ? -1 : 0); })
-                    var spells = talent.talents.map(function (spell) {
-                        return React.createElement(TalentSpell, { key:"talentSpell-" + spell.spell.name }, spell.spell, spell.tier);
-                    });
+                    var spells = talent.talents
+                            .sort(function (a, b) { return (a.tier > b.tier) ? 1 : ((b.tier > a.tier) ? -1 : 0); })
+                            .map(function (spell) {
+                                return React.createElement(TalentSpell, { key:"talentSpell-" + spell.spell.name }, spell.spell, spell.tier);
+                            });
 
                     return (<Panel className={ControlPanelClass} key={"ctcPanel-" + talent.spec.name} header={header} eventKey={eventKey++ }>
                                 <Well className={ControlPanelDescClass}>{talent.spec.description}</Well>
-                                <div>
+                                <div className="talentSpellsContainer">
                                     {spells}
                                 </div>
                             </Panel>);
@@ -82,13 +83,34 @@ var TalentSpell = React.createClass({
 
         var icon = getIcon(spell.icon);
         var lvl = this.getLevel(tier);
-        //var desc = spell.description
 
         return (
                 <div className="talentSpellControl">
                     <div className="talentSpellControlLvl">{lvl}</div>
-                    <img src={icon} />
+                    <div className="tooltip-talent">
+                        <TalentToolTip spell={spell} icon={icon} />
+                        <img src={icon} />
+                    </div>
                     <div className="talentSpellControlName">{spell.name}</div>
+                    </div>
+                );
+    }
+});
+
+var TalentToolTip = React.createClass({
+    render: function () {
+        var name = this.props.spell.name;
+        var castTime = this.props.spell.castTime;
+        var desc = this.props.spell.description;
+
+        return (
+                <div className="tooltiptext-talent tooltip-talent-top">
+                    <div style={{ marginBottom: "5px", display: "flex" }}>
+                        <img style={{ margin: "0 5px", width: "35px", height: "35px" }} src={this.props.icon} />
+                        <div style={{ margin: "auto 20px" }}>{name}</div>
+                    </div>
+                    <div style={{ margin: "10px" }}>{castTime}</div>
+                    <div style={{ margin: "10px" }}>{desc}</div>
                 </div>
                 );
     }

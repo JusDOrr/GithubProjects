@@ -7,12 +7,12 @@
 
         return (
                 <div style={{marginTop: "1px"}}>
-                    <div style={{ backgroundImage: "url(" + avatar + ")", backgroundSize: "cover", backgroundRepeat: "no-repeat", height: "600px", width: "var(--ControlWidth)", margin: "auto" }}> 
+                    <div className="armory-character" style={{backgroundImage: "url(" + avatar + ")"}}>
                         <div style={{display: "inline-block"}}>
                             <Gear data={char.items} />
                         </div>
                     </div>
-                    <Stats data={char.stats} faction={this.props.faction} />
+                    <Stats data={char.stats} faction={this.props.faction} charClass={char.class}/>
                     <Talents data={char.talents} faction={this.props.faction} />
                     <ProgressionControl data={char.progression} />
                 </div>

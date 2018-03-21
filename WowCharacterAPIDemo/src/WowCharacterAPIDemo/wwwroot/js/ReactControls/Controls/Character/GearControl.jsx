@@ -5,7 +5,7 @@
 
         if (items) {        
             //Left Set - head, neck, shoulder, back, chest, shirt, tabard, wrist
-            var leftSide = {
+            leftSide = {
                 "head": items.head,
                 "neck": items.neck,
                 "shoulder": items.shoulder,
@@ -17,7 +17,7 @@
             };
 
             //Right Set - hands, waist, legs, feet, finger1, finger2, trinket1, trinket2
-            var rightSide = {
+            rightSide = {
                 "hands": items.hands,
                 "waist": items.waist,
                 "legs": items.legs,
@@ -29,7 +29,7 @@
             };
 
             //Bottom Set - mainhand, offhand
-            var bottomSide = {
+            bottomSide = {
                 "mainhand": items.mainHand,
                 "offhand": items.offHand
             };
@@ -58,7 +58,7 @@ var ItemsLeftSide = React.createClass({
         var Tabard = React.createElement(ItemLeftSideCell, { data: side.tabard, emptyIcon: "EmptyTabard" }, null);
         var Wrist = React.createElement(ItemLeftSideCell, { data: side.wrist, emptyIcon: "EmptyWrists" }, null);
 
-        return (<div style={ { width: "385px", minHeight: "375px", float: "left", display: "inline-block" }}>
+        return (<div style={{ width: "385px", minHeight: "375px", float: "left", display: "inline-block" }}>
                     {Head}{Neck}{Shoulder}{Back}{Chest}{Shirt}{Tabard}{Wrist}
                 </div>);
     }
@@ -77,7 +77,7 @@ var ItemsRightSide = React.createClass({
         var Trinket1 = React.createElement(ItemRightSideCell, { data: side.trinket1, emptyIcon: "EmptyTrinket1" }, null);
         var Trinket2 = React.createElement(ItemRightSideCell, { data: side.trinket2, emptyIcon: "EmptyTrinket2" }, null);
 
-        return (<div style={ { width: "385px", minHeight: "375px", float: "right", display: "inline-block" } }>
+        return (<div style={{ width: "385px", minHeight: "375px", float: "right", display: "inline-block" }}>
                     {Hands}{Waist}{Legs}{Feet}{Finger1}{Finger2}{Trinket1}{Trinket2}
                 </div>);
     }
@@ -101,7 +101,7 @@ var ItemLeftSideCell = React.createClass({
     render: function () {
         var info = React.createElement(ItemIconLeftCell, { data: this.props.data, emptyIcon: this.props.emptyIcon }, null);
 
-        return (<div style={{height: "40px", marginBottom: "25px"}}>{info}</div>);
+        return (<div style={{ height: "40px", marginBottom: "25px" } }>{info}</div>);
     }
 });
 
@@ -119,7 +119,7 @@ var ItemIconRightCell = React.createClass({
 
         var color = "grey";
         var icon = "/images/Slots/" + this.props.emptyIcon + ".png";
-        var opacity = 0;
+        var key = Math.random();
 
         var name = "";
         var lvl = "";
@@ -130,6 +130,7 @@ var ItemIconRightCell = React.createClass({
         if (item) {
             icon = getIcon(item.icon);
             color = getQualityColor(item.quality);
+            key = item.id;
 
             name = item.name;
             lvl = item.itemLevel;
@@ -141,7 +142,7 @@ var ItemIconRightCell = React.createClass({
         return (
                 <div>
                     <div className={tooltipClass}>
-                        <GearToolTip cssClass={tooltipGearClass} item={item} />
+                        <GearToolTip key={key} cssClass={tooltipGearClass} item={item} />
                         <img src={icon} style={{ float: "right", border: "solid", borderWidth: "thin", borderColor: color, width: "42px", height: "42px", backgroundSize: "contains"}} />
                     </div>
                     <div style={{ float: "right", marginRight: "5px", verticalAlign: "middle", fontSize: "small" } }>
@@ -157,8 +158,9 @@ var ItemIconLeftCell = React.createClass({
     render: function () {
         var item = this.props.data;
 
-        var color = "white";
+        var color = "grey";
         var icon = "/images/Slots/" + this.props.emptyIcon + ".png";
+        var key = Math.random();
 
         var name = "";
         var lvl = "";
@@ -169,6 +171,7 @@ var ItemIconLeftCell = React.createClass({
         if (item) {
             icon = getIcon(item.icon);
             color = getQualityColor(item.quality);
+            key = item.id;
 
             name = item.name;
             lvl = item.itemLevel;
@@ -180,7 +183,7 @@ var ItemIconLeftCell = React.createClass({
         return (
                 <div>
                     <div className={tooltipClass}>
-                        <GearToolTip cssClass={tooltipGearClass} item={item} />
+                        <GearToolTip key={key} cssClass={tooltipGearClass} item={item} />
                         <img src={icon} style={{ float: "left", border: "solid", borderWidth: "thin", borderColor: color, width: "42px", height: "42px", backgroundSize: "contains" }} />
                     </div>
                     <div style={{ display: "inline-block", marginLeft: "5px", verticalAlign: "middle", fontSize: "small" } }>
@@ -193,6 +196,9 @@ var ItemIconLeftCell = React.createClass({
 });
 
 var GearToolTip = React.createClass({
+    getInitialState: function () {
+        return { item: null };
+    },
     componentDidMount: function () {
         if (!this.props.item)
             return;
@@ -245,7 +251,7 @@ var GearToolTip = React.createClass({
                         React.createElement('div', { style: { backgroundImage: "url(../images/Icons/copper.gif)", width: "12px", height: "12px", margin: "2px 0 0 2px" } }, null)));
     },
     render: function () {
-        if (!this.state || !this.props.item)
+        if (!this.state.item || !this.props.item)
             return (<div/>);
 
         var item = this.state.item;

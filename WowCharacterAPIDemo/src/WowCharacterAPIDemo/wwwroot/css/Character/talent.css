@@ -9,6 +9,8 @@
     background-size: cover;
 
     color: var(--GoldColor);
+
+    max-height: 250px;
 }
 
 .horde-talentControlPanel > .panel-heading {
@@ -26,7 +28,7 @@
 
     margin-bottom: 0;
 
-    background-image: url(../../images/GreyChalkboard.jpeg);
+    background-image: var(--ChalkBackImage);
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -39,6 +41,8 @@
     background-size: cover;
 
     color: var(--GoldColor);
+
+    max-height: 250px;
 }
 
 .alli-talentControlPanel > .panel-heading {
@@ -56,7 +60,7 @@
     
     margin-bottom: 0;
 
-    background-image: url(../../images/GreyChalkboard.jpeg);
+    background-image: var(--ChalkBackImage);
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -64,11 +68,11 @@
 }
 
 .talentControlHeader{
-    height: fit-content;
+    height: auto;
 }
 
 .talentControlHeader div{
-    width: 150px;
+    width: auto;
 }
 
 .talentControlHeader img{
@@ -77,6 +81,15 @@
 
 .talentControlHeader label{
     margin-left: 5px;
+}
+
+.talentSpellsContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    width: 440px;
+    height: 175px;
 }
 
 .talentLabel {
@@ -89,10 +102,10 @@
     margin-left: 10px;
     width: 210px;
     height: 40px;
-    float: right;
+    /*float: right;*/
 }
 
-.talentSpellControl img {
+.talentSpellControl > div > img {
     float: left;
     height: 36px;
     width: 36px;
@@ -109,4 +122,41 @@
     float: left;
     margin-left: 5px;
     font-size: small;
+}
+
+/* Talent Tooltip container */
+.tooltip-talent {
+    position: relative;
+    opacity: 100;
+}
+
+.tooltip-talent .tooltiptext-talent {
+    visibility: hidden;
+
+    height: auto;
+    width: auto;
+    max-width: 250px;
+    min-width: 200px;
+    padding: 5px 0;
+    
+    color: white;
+
+    /*background-color: rgba(0, 0, 0, 0.90);*/
+    background-image: var(--TooltipBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border: 3px solid rgb(52, 52, 52);
+    border-radius: 6px;
+    position: absolute;
+    z-index: 10;
+}
+
+.tooltip-talent-top {
+    top: 0;
+    left: 50px;
+}
+
+.tooltip-talent:hover .tooltiptext-talent {
+    visibility: visible;
 }

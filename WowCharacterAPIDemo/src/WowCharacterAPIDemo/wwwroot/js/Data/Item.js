@@ -6,7 +6,7 @@
    { "id": 4, "color": "#c600ff" },
    { "id": 5, "color": "#ff8000" },
    { "id": 6, "color": "#e5cc80" },
-   { "id": 7, "color": "#0cf" },
+   { "id": 7, "color": "#0cf" }
 ]);
 
 var InventoryTypeOld = Object.freeze([
@@ -50,17 +50,22 @@ var InventoryType = Object.freeze([
    { "id": 10, "name": "Hands" },
    { "id": 11, "name": "Finger" },
    { "id": 12, "name": "Trinket" },
-   { "id": 13, "name": "unknown" },
+   { "id": 13, "name": "unknown1" },
    { "id": 14, "name": "Off-Hand" },
-   { "id": 15, "name": "unknown" },
+   { "id": 15, "name": "unknown2" },
    { "id": 16, "name": "Back" },
    { "id": 17, "name": "Two-Hand" },
-   { "id": 18, "name": "unknown" },
+   { "id": 18, "name": "unknown3" },
    { "id": 19, "name": "Tabard" },
-   { "id": 20, "name": "unknown" },
+   { "id": 20, "name": "unknown4" },
    { "id": 21, "name": "Main-Hand" },
-   { "id": 22, "name": "unknown" },
-   { "id": 23, "name": "unknown" }
+   { "id": 22, "name": "unknown5" },
+   { "id": 23, "name": "Held in Off-Hand" },
+   { "id": 24, "name": "unknown7" },
+   { "id": 25, "name": "unknown8" },
+   { "id": 26, "name": "unknown9" },
+   { "id": 27, "name": "unknown10" },
+   { "id": 28, "name": "unknown11" }
 ]);
 
 var InventoryClass = Object.freeze([
@@ -116,7 +121,7 @@ var InventoryClass = Object.freeze([
          { "subclass": 41617, "name": "One-Handed Melee Weapon" },
          { "subclass": 173555, "name": "Melee Weapon" },
          { "subclass": 174067, "name": "Melee Weapon" },
-         { "subclass": 262156, "name": "Ranged Weapon" },]
+         { "subclass": 262156, "name": "Ranged Weapon" }]
    },
    {
       "id": 3, "name": "Gem", "subclasses": [

@@ -92,10 +92,12 @@ var getAvatar = function (race, gender, thumbnail) {
       return "";
 
    // avatar - character icon / profilemain - character render
-   var _fallback = "?alt=/wow/static/images/2d/profilemain/race/" + race + "-" + gender + ".jpg";
-   var _thumbnail = (thumbnail + "").replace("avatar.jpg", "profilemain.jpg");
+   //var _fallback = "?alt=/wow/static/images/2d/profilemain/race/" + race + "-" + gender + ".jpg";
+   //var _thumbnail = (thumbnail + "").replace("avatar.jpg", "profilemain.jpg");
+   //return "http://render-api-us.worldofwarcraft.com/static-render/us/" + _thumbnail + _fallback;
 
-   return "http://render-api-us.worldofwarcraft.com/static-render/us/" + _thumbnail + _fallback;
+   var _thumbnail = (thumbnail + "").replace("avatar.jpg", "main.jpg");
+   return "https://render-us.worldofwarcraft.com/character/" + _thumbnail;
 };
 
 var getIcon = function (icon) {
@@ -190,13 +192,33 @@ var getInventoryClass = function (mainclass, subclass) {
    return invClass.name;
 };
 
+// I think this should be dependant on calcClass, not class....
 var getClassStats = function (classId, stats) {
    var classStats = "";
 
-   // TODO: update this work for all classes. just return warrior stats for now
    switch (classId) {
-      case 1: classStats = _.pick(stats, ["health", "powerType", "power", "str", "sta", "crit", "critRating", "haste", "hasteRating", "mastery", "masteryRating", "versatility", "versatilityDamageDoneBonus"]);
+      // Warrior, Paladin, Death Knight
+      case 1:
+      case 2:
+      case 6:
+         classStats = _.pick(stats, ["health", "powerType", "power", "str", "sta", "crit", "critRating", "haste", "hasteRating", "mastery", "masteryRating", "versatility", "versatilityDamageDoneBonus"]);
          break;
+      // Hunter, Rogue, Monk, Druid, Demon Hunter
+      case 3:
+      case 4:
+      case 10:
+      case 11:
+      case 12:
+         classStats = _.pick(stats, ["health", "powerType", "power", "agi", "sta", "crit", "critRating", "haste", "hasteRating", "mastery", "masteryRating", "versatility", "versatilityDamageDoneBonus"]);
+         break;
+      // Mage, Priest, Shaman, Warlock
+      case 5:
+      case 7:
+      case 8:
+      case 9:
+         classStats = _.pick(stats, ["health", "powerType", "power", "int", "sta", "crit", "critRating", "haste", "hasteRating", "mastery", "masteryRating", "versatility", "versatilityDamageDoneBonus"]);
+         break;
+      // Unknown
       default: classStats = stats;
          break;
    }

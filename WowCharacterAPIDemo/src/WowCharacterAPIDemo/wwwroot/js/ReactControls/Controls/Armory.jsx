@@ -144,9 +144,9 @@ var PvpPlate = React.createClass({
         return (
                 <Well className="armory-pvp">
                     {this.renderPrestige("0")}
-                    {this.renderItem("/images/Pvp/Honor.png", "", "Honor Level", "22")}
-                    {this.renderItem("/images/Pvp/HonorableKills.png", "", "Honorable Kills", "16535")}
-                    {this.renderItem("/images/Pvp/PvpFrame.png", "2v2", "2v2 Rating", "96")}
+                    {this.renderItem("/images/Pvp/Honor.png", "", "Honor Level", "0")}
+                    {this.renderItem("/images/Pvp/HonorableKills.png", "", "Honorable Kills", "0")}
+                    {this.renderItem("/images/Pvp/PvpFrame.png", "2v2", "2v2 Rating", "0")}
                     {this.renderItem("/images/Pvp/PvpFrame.png", "3v3", "3v3 Rating", "0")}
                     {this.renderItem("/images/Pvp/PvpFrame.png", "BG", "Battlegrounds Rating", "0")}
                 </Well>
