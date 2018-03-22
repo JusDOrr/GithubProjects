@@ -81,7 +81,7 @@ var getLogo = function (faction) {
 
    if (faction === "Alliance")
       logo = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-alliance.png";
-   else
+   else if (faction === "Horde")
       logo = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-horde.png";
 
    return logo;
@@ -184,8 +184,10 @@ var getInventoryType = function (value) {
 
 var getInventoryClass = function (mainclass, subclass) {
    var subclasses = InventoryClass.find(x => x.id === mainclass);
-   var invClass = subclasses.subclasses.find(x => x.subclass === subclass);
+   if (!subclasses)
+      return "Miscellaneous";
 
+   var invClass = subclasses.subclasses.find(x => x.subclass === subclass);
    if (!invClass)
       return "Miscellaneous";
 

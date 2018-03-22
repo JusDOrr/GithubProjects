@@ -45,3 +45,39 @@
     width: 190px;
     margin-left: 5px;
 }
+
+/* Talent Tooltip container */
+.tooltip-raid-progress {
+    position: relative;
+    opacity: 100;
+}
+
+.tooltip-raid-progress .tooltiptext-raid-progress {
+    visibility: hidden;
+
+    height: auto;
+    width: max-content;
+    min-width: 200px;
+    padding: 5px 0;
+    
+    color: white;
+
+    /*background-color: rgba(0, 0, 0, 0.90);*/
+    background-image: var(--TooltipBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border: 3px solid rgb(52, 52, 52);
+    border-radius: 6px;
+    position: absolute;
+    z-index: 10;
+}
+
+.tooltip-raid-progress-top {
+    bottom: 0;
+    left: 50px;
+}
+
+.tooltip-raid-progress:hover .tooltiptext-raid-progress {
+    visibility: visible;
+}

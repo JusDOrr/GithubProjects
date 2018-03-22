@@ -102,8 +102,8 @@
 
 .armory-character {
     background-position-x: center;
-    background-position-y: bottom;
-    background-size: 1000px 750px;
+    background-position-y: -150px;
+    background-size: 1000px 800px;
     background-repeat: no-repeat;
 
     width: var(--ControlWidth);

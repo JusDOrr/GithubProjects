@@ -13,7 +13,7 @@
 	-Currently hard coded to show only warrior
 	-This will take some time...
 
-4) Fix item display the way gear tool tip was fixed?
+4) Fix item display the way gear tool tips were fixed
 
 5) Achievements
 	-Implement
@@ -31,17 +31,18 @@
 	-Implement
 
 10) "Sticky" Nameplate and NavBars
-	-Implement
 	-https://www.w3schools.com/howto/howto_js_navbar_sticky.asp
 
-11) Raid Progress Tooltips
+11) Raid Progress Tooltips (COMPLETE)
 	-Progress per raid teir with number boss kills...
 
 12) Stat Tooltips
 	-Missing details for % based values...
 
-12) Pvp Bar (& tooltips)
+12) Pvp Bar & tooltips
 	-Show valid data...
 
-13) Armory Character Image
+13) Armory Character Image (COMPLETE)
 	-Move down a bit
+
+14) Strip the css out of the .jsx files

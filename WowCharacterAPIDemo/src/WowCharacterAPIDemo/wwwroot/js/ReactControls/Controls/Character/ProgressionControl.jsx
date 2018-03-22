@@ -48,10 +48,10 @@ var Raid = React.createClass({
         })
 
         // Build LFR, Normal, Heroic, and Mythic Progress Bars...
-        var lfrProg = React.createElement(RaidProgress, { progress: lfrBossProg }, null);
-        var normProg = React.createElement(RaidProgress, { progress: normBossProg }, null);
-        var heroProg = React.createElement(RaidProgress, { progress: heroBossProg }, null);
-        var mythicProg = React.createElement(RaidProgress, { progress: mythicBossProg }, null);
+        var lfrProg = React.createElement(RaidProgress, { raid: raid.name, progress: lfrBossProg }, null);
+        var normProg = React.createElement(RaidProgress, { raid: raid.name, progress: normBossProg }, null);
+        var heroProg = React.createElement(RaidProgress, { raid: raid.name, progress: heroBossProg }, null);
+        var mythicProg = React.createElement(RaidProgress, { raid: raid.name, progress: mythicBossProg }, null);
 
         return (
                 <Well className="raidWell">
@@ -98,9 +98,33 @@ var RaidProgress = React.createClass({
         return (
                 <div className="raid">
                     <div>{difficultyName}</div>
-                    <ProgressBar striped active bsStyle={style} min={0} max={progress.length} now={killTotal} label={label}
-                                 style={{ backgroundColor: "grey", display: "inline-block", width: "190px", marginLeft: "5px" }}/>
+                    <div className="tooltip-raid-progress">
+                        <RaidProgressToolTip key={Math.random()} raid={this.props.raid} progress={this.props.progress} />   
+                        <ProgressBar striped active bsStyle={style} min={0} max={progress.length} now={killTotal} label={label}
+                                     style={{ backgroundColor: "grey", display: "inline-block", width: "190px", marginLeft: "5px" }} />
+                    </div>
                 </div>
                 );
     }
+});
+
+var RaidProgressToolTip = React.createClass({
+    render: function () {
+        var name = this.props.raid;
+        var progress = this.props.progress;
+
+        var bosses = progress.bosses.map(function (boss) {
+            var color = (boss.kills > 0) ? "green" : "grey";
+
+            return React.createElement("div", { key: progress.name + "-" + boss.name, style:{ margin: "0 10px", width: "auto", color: color } }, boss.kills + "x " + boss.name);
+        });
+
+        return (
+                <div className="tooltiptext-raid-progress tooltip-raid-progress-top" style={{display: "inline-grid"}}>
+                    <div style={{ margin: "10px 10px 0 10px", fontSize: "20px", width: "auto" } }>{name}</div>
+                    <div style={{ margin: "0 10px 10px 10px" } }>{progress.name}</div>
+                    {bosses}
+                </div>
+                );
+}
 });
