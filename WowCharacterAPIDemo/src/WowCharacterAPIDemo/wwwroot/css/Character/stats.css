@@ -37,3 +37,40 @@
     vertical-align: middle;
     font-size: small;
 }
+
+/* Stat Tooltip container */
+.tooltip-stat {
+    position: relative;
+    opacity: 100;
+}
+
+.tooltip-stat .tooltiptext-stat {
+    visibility: hidden;
+
+    height: auto;
+    width: max-content;
+    max-width: 190px;
+    min-width: 150px;
+    padding: 5px 0;
+    
+    color: white;
+
+    /*background-color: rgba(0, 0, 0, 0.90);*/
+    background-image: var(--TooltipBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border: 3px solid rgb(52, 52, 52);
+    border-radius: 6px;
+    position: absolute;
+    z-index: 10;
+}
+
+.tooltip-stat-top {
+    top: 0;
+    left: 50px;
+}
+
+.tooltip-stat:hover .tooltiptext-stat {
+    visibility: visible;
+}

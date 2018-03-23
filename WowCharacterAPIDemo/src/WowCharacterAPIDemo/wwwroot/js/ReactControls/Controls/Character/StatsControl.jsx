@@ -1,20 +1,9 @@
 ﻿var Stats = React.createClass({
     getTableCell: function (img, stat, title) {
-        return(
-            <td style={{borderTop: "transparent"}}>
-                <img src={img} />                                       
-                <div>
-                    <div>{stat}</div>
-                    <div>{title}</div>
-                </div>
-            </td>
-            );
+        return(<StatCell image={img} stat={stat} title={title} />);
     },
     getStatClass: function (faction) {
-        var className = "alli-stats";
-
-        if (faction === "Horde")
-            className = "horde-stats";
+        var className = (faction === "Horde") ? "horde-stats" : "alli-stats";
 
         return className;
     },
@@ -71,20 +60,76 @@
                     <Table>
                         <tbody>
                             <tr className="stats-tr">
-                                {this.getTableCell("/images/Stats/Health.png", classStats.health.toLocaleString(), "HEALTH")}
+                                <StatCell image="/images/Stats/Health.png" stat={classStats.health.toLocaleString()} title="HEALTH" />
                                 {this.getPowerCell(classStats.powerType, classStats.power)}
                                 {this.getMainStatCell(classStats)}
-                                {this.getTableCell("/images/Stats/Stamina.png", classStats.sta.toLocaleString(), "STAMINA")}
+                                <StatCell image="/images/Stats/Stamina.png" stat={classStats.sta.toLocaleString()} title="STAMINA" />
                             </tr>
                             <tr className="stats-tr">
-                                {this.getTableCell("/images/Stats/CriticalStrike100.png", Math.round(classStats.crit)+"%", "CRITICAL STRIKE")}
-                                {this.getTableCell("/images/Stats/Haste.png", Math.round(classStats.haste)+"%", "HASTE")}
-                                {this.getTableCell("/images/Stats/Mastery100.png", Math.round(classStats.mastery)+"%", "MASTERY")}
-                                {this.getTableCell("/images/Stats/Versatility.png", Math.round(classStats.versatilityDamageDoneBonus)+"%", "VERSATILITY")}
+                                <StatCell image="/images/Stats/CriticalStrike100.png" stat={classStats.crit} title="CRITICAL STRIKE" rating={classStats.critRating} />
+                                <StatCell image="/images/Stats/Haste.png" stat={classStats.haste} title="HASTE" rating={classStats.hasteRating} />
+                                <StatCell image="/images/Stats/Mastery100.png" stat={classStats.mastery} title="MASTERY" rating={classStats.masteryRating} />
+                                <StatCell image="/images/Stats/Versatility.png" stat={classStats.versatilityDamageDoneBonus} title="VERSATILITY" rating={classStats.versatility} />
                             </tr>
                         </tbody>
                     </Table>
                 </Well>
+                );
+    }
+});
+
+var StatCell = React.createClass({
+    render: function () {
+        var stat = this.props.stat;
+        if (this.props.rating)
+            stat = Math.round(stat) + "%";
+
+        return (
+                <td className="tooltip-stat" style={{borderTop: "transparent"}}>
+                    <StatToolTip stat={this.props.stat} title={this.props.title} rating={this.props.rating} />
+                    <img src={this.props.image} />
+                    <div>
+                        <div>{stat}</div>
+                        <div>{this.props.title}</div>
+                    </div>
+                </td>
+                );
+    }
+});
+
+var StatToolTip = React.createClass({
+    round: function(number, precision) {
+        var factor = Math.pow(10, precision);
+        var tempNumber = number * factor;
+        var roundedTempNumber = Math.round(tempNumber);
+        return roundedTempNumber / factor;
+    },
+    getRating: function (rating) {
+        return (
+                <div style={{display: "inline-flex", width: "auto"}}>
+                    <div style={{ margin: "0 5px 0 10px", width: "auto", fontSize: "14px" }}>Total Rating</div>
+                    <div style={{ margin: "auto 0", width: "auto", fontSize: "11px" }}>{rating}</div>
+                </div>
+               )
+    },
+    render: function () {
+        var stat = this.props.stat;
+        var title = this.props.title;
+
+        var rating = "";
+        if (this.props.rating) {
+            rating = this.getRating(this.props.rating);
+            stat = this.round(stat, 2) + "%";
+        }
+
+        return (
+                <div className="tooltiptext-stat tooltip-stat-top">
+                    <div style={{display: "inline-flex", width: "auto"}}>
+                        <div style={{ margin: "5px 5px 5px 10px", width: "auto", fontSize: "16px" }}>{title}</div>
+                        <div style={{ margin: "auto 0", width: "auto", fontSize: "11px" }}>{stat}</div>
+                    </div>
+                    {rating}
+                </div>
                 );
     }
 });

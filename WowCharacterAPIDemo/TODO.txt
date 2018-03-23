@@ -36,7 +36,7 @@
 11) Raid Progress Tooltips (COMPLETE)
 	-Progress per raid teir with number boss kills...
 
-12) Stat Tooltips
+12) Stat Tooltips (COMPLETE)
 	-Missing details for % based values...
 
 12) Pvp Bar & tooltips
