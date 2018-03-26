@@ -1,3 +1,5 @@
+--GLOBAL CHECKLIST--
+
 1) Gear ToolTip
 	-Item Sets and Socket Info
 	-Fix sell price in creation (COMPLETE)
