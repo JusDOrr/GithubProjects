@@ -40,7 +40,7 @@
             <Well className="pageWell">
                 {HeaderElement}
                 {DescElement}
-                <Form inline style={{ margin: "auto", width: "fit-content" }}>
+                <Form inline className="armory-form">
                     <FormGroup controlId="formControlsRealm">
                         <ControlLabel>Realm:</ControlLabel>
                         <FormControl label="Realm" placeholder="Enter Realm Name..." style={{ marginLeft: "5px" }}/>
@@ -66,8 +66,7 @@ var ErrorLayout = React.createClass({
 
         return (
                 <div style={{marginTop: "5px"}}>
-                    <Well style={{ width: "var(--ControlWidth)", margin: "auto", textAlign: "center" } }>{this.props.data}
-                    </Well>
+                    <Well className="error-well">{this.props.data}</Well>
                 </div>
                 );
     }
@@ -89,7 +88,6 @@ var ArmoryBody = React.createClass({
         }
     },
     render: function () {
-        var Well = ReactBootstrap.Well;
         var char = this.props.data;
         
         // Unused Variables
@@ -98,16 +96,13 @@ var ArmoryBody = React.createClass({
         var totalHKills = char.totalHonorableKills;
 
         var raceInfo = getRaceInfo(char.race);
-        var backgroundImg = (raceInfo.faction === "Alliance") ? "/images/BlueChalkboard.jpg" : "/images/RedChalkboard.jpg";
         var ArmoryControl = this.getArmoryControl(raceInfo.faction);
 
         return (
                 <div style={{marginTop: "5px"}}>
-                    <Well style={{ width: "var(--ControlWidth)", margin: "auto", backgroundImage: "url(" + backgroundImg + ")", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
-                        <NamePlate data={char} />
-                    </Well>
+                    <NamePlate data={char} faction={raceInfo.faction} />
                     <PvpPlate />
-                    <ArmoryNavBar selectCallback={this.onSelect} faction={raceInfo.faction}/>
+                    <ArmoryNavBar selectCallback={this.onSelect} faction={raceInfo.faction} />
                     {ArmoryControl}
                 </div>
                 );
@@ -132,7 +127,7 @@ var PvpPlate = React.createClass({
                 <span className="tooltiptext tooltip-top">{tooltip}</span>
                 <div style={{display: "inline-block"}}>
                     <img src={imgSource} />
-                    <div style={{ position: "absolute", top: "12px", left: "12px" }}>{icon}</div>
+                    <div>{icon}</div>
                 </div>
                 {text}
             </div>
@@ -156,11 +151,17 @@ var PvpPlate = React.createClass({
 
 var NamePlate = React.createClass({
     render: function () {
+        var Well = ReactBootstrap.Well;
+
+        var backgroundImg = (this.props.faction === "Alliance") ? "/images/BlueChalkboard.jpg" : "/images/RedChalkboard.jpg";
+
         return (
-                <div style={{ height: "100px", marginLeft: "5px" }}>
-                    <NameSection data={this.props.data} />
-                    <InfoSection data={this.props.data} />
-                </div>
+                <Well className="armory-name-plate" style={{ backgroundImage: "url(" + backgroundImg + ")" }}>
+                    <div>
+                        <NameSection data={this.props.data} />
+                        <InfoSection data={this.props.data} />
+                    </div>
+                </Well>
                 );
     }
 });
@@ -184,11 +185,11 @@ var NameSection = React.createClass({
         }
 
         return (
-                <div style={{ height: "100px", display: "inline-block" }}>
-                    <div style={{ backgroundImage: "url(" + logo + ")" , float: "left" , width: "77.5px" , height: "100px" , backgroundSize: "100%" }} />
-                        <div style={{ float: "left" , marginLeft: "10px" , marginTop: "20px", paddingRight: "10px",  height: "60px", borderRight: "solid grey", borderRightWidth: "thin" }}>
-                        <div style={{ fontSize: "36px", color: classInfo.color, height: "40px" }}>{char.name}</div>
-                        <div style={{ fontSize: "14px" , color: "white" , height: "40px" }}>{title}</div>
+                <div className="name-section">
+                    <div className="name-section-logo" style={{ backgroundImage: "url(" + logo + ")" }} />
+                    <div className="name-section-name-title">
+                        <div className="name-section-name" style={{ color: classInfo.color}}>{char.name}</div>
+                        <div className="name-section-title">{title}</div>
                     </div>
                 </div>
                 );
@@ -211,19 +212,19 @@ var InfoSection = React.createClass({
         var swordsicon = "/images/Icons/swordsicon.png";
 
         return (                
-                <div style={{ height: "100px", display: "inline-block", position: "absolute", paddingLeft: "10px", color: "#f8b700", fontSize: "14px" }}>
-                    <div style={{ height: "20px", marginTop: "35px" }}>
-                        <div style={{ backgroundImage: "url(" + shieldicon + ")", float: "left", width: "16px", height: "16px", backgroundSize: "100%" }} />
-                            <div style={{ float: "left", marginLeft: "5px" } }>{char.achievementPoints}</div>
-                            <div style={{ backgroundImage: "url(" + swordsicon + ")", float: "left", width: "16px", height: "16px", backgroundSize: "100%", marginLeft: "5px" }} />
-                            <div style={{ float: "left", marginLeft: "5px" } }>{itemlvl} ILVL</div>
-                        </div>
-                        <div style={{ height: "20px", color: "white" }}>
+                <div className="info-section">
+                    <div className="info-section-stats">
+                        <div className="info-section-stats-logo" style={{ backgroundImage: "url(" + shieldicon + ")" }} />
+                        <div className="info-section-standard">{char.achievementPoints}</div>
+                        <div className="info-section-stats-logo" style={{ backgroundImage: "url(" + swordsicon + ")", marginLeft: "5px" }} />
+                        <div className="info-section-standard">{itemlvl} ILVL</div>
+                    </div>
+                    <div className="info-section-stats-data">
                         <div style={{ float: "left" }}>{char.level}</div>
-                        <div style={{ float: "left", marginLeft: "5px" } }>{raceInfo.race}</div>
-                        <div style={{ float: "left", marginLeft: "5px" } }>{classInfo.name}</div>
-                        <div style={{ float: "left", marginLeft: "5px", color: "#f8b700" } }>&lt;{guild}&gt;</div>
-                        <div style={{ float: "left", marginLeft: "5px" } }>{char.realm}</div>
+                        <div className="info-section-standard">{raceInfo.race}</div>
+                        <div className="info-section-standard">{classInfo.name}</div>
+                        <div className="info-section-standard" style={{ color: "#f8b700" }}>&lt;{guild}&gt;</div>
+                        <div className="info-section-standard">{char.realm}</div>
                     </div>
                 </div>
                 );

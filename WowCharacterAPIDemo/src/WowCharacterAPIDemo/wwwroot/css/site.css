@@ -18,101 +18,16 @@
     margin: 0;
 }
 
-/* ARMORY NAV BAR */
+.footer {
+    margin: 0;
 
-.alli-navArmory {
-    width: var(--ControlWidth);
-    margin: auto;
-
-    background-image: var(--AlliBackImage);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 4px;
+    background-color: #222;
+    border-color: #080808;
 }
 
-.alli-navArmory > li.active > a {
-    color: rgb(0, 0, 80);
-    background-color: var(--GoldColor);
+.footer-copyright {
+    color: #9d9d9d;
 }
-.alli-navArmory > li.active > a:hover, .alli-navArmory > li.active > a:focus {
-    color: rgb(0, 0, 80);
-    background-color: var(--GoldColor);
-}
-.alli-navArmory > li > a:hover {
-    color: rgb(0, 0, 80);
-    background-color: var(--GoldColor);
-}
-
-.alli-nav-item > a {
-    color: var(--GoldColor);
-}
-
-.horde-navArmory {
-    width: var(--ControlWidth);
-    margin: auto;
-
-    background-image: var(--HordeBackImage);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    border-radius: 4px;
-}
-
-.horde-navArmory > li.active > a {
-    color: rgb(80, 0, 0);
-    background-color: var(--GoldColor);
-}
-.horde-navArmory > li.active > a:hover, .horde-navArmory > li.active > a:focus {
-    color: rgb(80, 0, 0);
-    background-color: var(--GoldColor);
-}
-.horde-navArmory > li > a:hover {
-    color: rgb(0, 0, 80);
-    background-color: var(--GoldColor);
-}
-
-.horde-nav-item > a {
-    color: var(--GoldColor);
-}
-
-.armory-pvp {
-    width: var(--ControlWidth);
-    margin: 0 auto auto auto;
-    padding: 0;
-
-    border-top: 0;
-    background-image: var(--ChalkBackImage);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    display: flex;
-    justify-content: space-around;
-}
-
-.armory-pvp-plate {
-    display: inline-block;
-    width: fit-content;
-    padding: 0 2px 0 2px;
-    color: Gold;
-}
-
-.armory-pvp-plate > div > img {
-    width: 40px;
-}
-
-.armory-character {
-    background-position-x: center;
-    background-position-y: -150px;
-    background-size: 1000px 800px;
-    background-repeat: no-repeat;
-
-    width: var(--ControlWidth);
-    height: 600px;
-
-    margin: auto;
-}
-
-/* END ARMORY NAV BAR */
 
 .pageWell {
     /*background: #2C4770;*/
@@ -156,93 +71,3 @@
     background: #ececec;
     /*color: #758AA8;*/
 }
-
-/* Status Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    opacity: 100;
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 75px;
-    background-color: lightgray;
-    color: dimgrey;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    font-family:initial;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-}
-
-.tooltip-top {
-    bottom: 125%;
-    left: 50%;
-    margin-left: -35px;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-
-/* Gear Tooltip container */
-.tooltip-gear {
-    position: relative;
-    opacity: 100;
-}
-
-/* Tooltip text */
-.tooltip-gear .tooltiptext-gear {
-    visibility: hidden;
-
-    height: auto;
-    width: auto;
-    max-width: 350px;
-    min-width: 250px;
-    padding: 5px 0;
-    
-    /*background-color: rgba(0, 0, 0, 0.90);*/
-    background-image: var(--TooltipBackImage);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    border: 3px solid rgb(52, 52, 52);
-    border-radius: 6px;
-
-    position: absolute;
-    z-index: 10;
-}
-
-.tooltip-top-left-gear {
-    top: 0;
-    left: 50px;
-}
-
-.tooltip-top-right-gear {
-    top: 0;
-    right: 50px;
-}
-
-.tooltip-gear:hover .tooltiptext-gear {
-    visibility: visible;
-}
-
-/* REALM CSS */
-
-/* MOUNTS CSS */
-
-.mountRowCell tr td {
-    vertical-align: middle;
-}
-
-/*.mountRowIcon {
-    display: inline-block;
-    border: solid;
-    padding: 0;
-    width: 55px;
-}*/

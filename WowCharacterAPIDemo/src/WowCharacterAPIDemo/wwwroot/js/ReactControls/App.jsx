@@ -1,22 +1,23 @@
 ﻿var App = React.createClass({
-    getFooter: function () {
-        var Well = ReactBootstrap.Well;
-        var footer = React.createElement(Well, { style: { margin: 0, backgroundColor: "#222", borderColor: "#080808" } },
-                        React.createElement("div", { style: { color: "#9d9d9d" } }, "Website: Copyright (c) 2017 Justin Orr -||- Artwork: All property of Blizzard")
-                     );
-
-        return footer;
-    },
     render: function () {
-        var footer = this.getFooter();
-
         return (
                 <div>
-                    <HeaderNavBar></HeaderNavBar>
+                    <HeaderNavBar />
                     {this.props.children}
-                    {footer}
+                    <Footer />
                 </div>
                 );
+    }
+});
+
+var Footer = React.createClass({
+    render: function () {
+        var Well = ReactBootstrap.Well;
+
+        return React.createElement(Well, { className: "footer" },
+                        React.createElement("div", { className: "footer-copyright" },
+                            "Website: Copyright (c) 2017 Justin Orr -||- Artwork: All property of Blizzard")
+                     );
     }
 });
 

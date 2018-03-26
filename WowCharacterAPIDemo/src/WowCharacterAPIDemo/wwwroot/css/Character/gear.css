@@ -1,0 +1,82 @@
+﻿.gear-left-side {
+    float: left;
+    display: inline-block;
+
+    min-height: 375px;
+    width: 385px;
+}
+
+.gear-right-side {
+    float: right;
+    display: inline-block;
+
+    min-height: 375px;
+    width: 385px;
+}
+
+.gear-item-cell {
+    height: 40px;
+    margin-bottom: 25px;
+}
+
+.gear-item-cell-icon {
+    background-size: contains;
+    border: solid;
+    border-width: thin;
+
+    width: 42px;
+    height: 42px;
+}
+
+.gear-tooltip-price {
+    display: inline-flex;
+    margin-left: 5px;
+}
+
+.gear-tooltip-price-icon {
+    width: 12px;
+    height: 12px;
+    margin: 2px 0 0 2px;
+}
+
+/* Gear Tooltip container */
+.tooltip-gear {
+    position: relative;
+    opacity: 100;
+}
+
+/* Tooltip text */
+.tooltip-gear .tooltiptext-gear {
+    visibility: hidden;
+
+    height: auto;
+    width: auto;
+    max-width: 350px;
+    min-width: 250px;
+    padding: 5px 0;
+    
+    /*background-color: rgba(0, 0, 0, 0.90);*/
+    background-image: var(--TooltipBackImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border: 3px solid rgb(52, 52, 52);
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 10;
+}
+
+.tooltip-top-left-gear {
+    top: 0;
+    left: 50px;
+}
+
+.tooltip-top-right-gear {
+    top: 0;
+    right: 50px;
+}
+
+.tooltip-gear:hover .tooltiptext-gear {
+    visibility: visible;
+}

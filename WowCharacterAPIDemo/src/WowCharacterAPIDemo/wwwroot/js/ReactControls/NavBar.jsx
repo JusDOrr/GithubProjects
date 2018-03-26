@@ -34,20 +34,10 @@ var ArmoryNavBar = React.createClass({
         return { selectedKey: 1 };
     },
     getNavClass: function (faction) {
-        var className = "alli-navArmory";
-
-        if (faction === "Horde")
-            className = "horde-navArmory";
-
-        return className;
+        return (faction === "Horde") ? "horde-navArmory" : "alli-navArmory";
     },
     getNavItemClass: function (faction) {
-        var className = "alli-nav-item";
-
-        if (faction === "Horde")
-            className = "horde-nav-item";
-
-        return className;
+        return (faction === "Horde") ? "horde-nav-item" : "alli-nav-item";
     },
     onSelect: function (e) {
         this.setState({ selectedKey: e });

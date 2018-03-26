@@ -126,5 +126,5 @@ var RaidProgressToolTip = React.createClass({
                     {bosses}
                 </div>
                 );
-}
+    }
 });

@@ -1,15 +1,11 @@
-﻿/* Mount Well & Header */
-.mountWell {
-    /*background: #2C4770;*/
+﻿.mountWell {
     font-family: 'Hammersmith One', sans-serif;
     margin: 0;
 }
 
 .mountHeader {
     text-align: center;
-    /*background: #2C4770;*/
     border: none;
-    /*color: #132a4a;*/
     margin: 0;
 }
 
